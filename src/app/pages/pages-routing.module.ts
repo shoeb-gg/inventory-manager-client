@@ -6,13 +6,25 @@ import { PagesComponent } from './pages.component';
 const routes: Routes = [
     {
         path: '',
+        redirectTo: '/app/dashboard',
+        pathMatch: 'full',
+    },
+    {
+        path: '',
         component: PagesComponent,
         children: [
             {
-                path: '',
+                path: 'dashboard',
                 loadChildren: () =>
                     import('./dashboard/dashboard.module').then(
                         (m) => m.DashboardModule
+                    ),
+            },
+            {
+                path: 'orders',
+                loadChildren: () =>
+                    import('./orders/orders.module').then(
+                        (m) => m.OrdersModule
                     ),
             },
         ],
