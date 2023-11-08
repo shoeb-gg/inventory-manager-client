@@ -29,7 +29,7 @@ export class SidebarComponent implements OnInit {
                     {
                         label: 'Stock',
                         icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/landing'],
+                        routerLink: ['/app/stock'],
                     },
                     {
                         label: 'Supplier',

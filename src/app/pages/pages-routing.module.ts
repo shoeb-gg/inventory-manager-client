@@ -27,6 +27,11 @@ const routes: Routes = [
                         (m) => m.OrdersModule
                     ),
             },
+            {
+                path: 'stock',
+                loadChildren: () =>
+                    import('./stock/stock.module').then((m) => m.StockModule),
+            },
         ],
     },
 ];
