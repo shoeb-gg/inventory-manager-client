@@ -19,17 +19,17 @@ export class SidebarComponent implements OnInit {
                     {
                         label: 'Dashboard',
                         icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/landing'],
+                        routerLink: ['/app/dashboard'],
                     },
                     {
                         label: 'Orders',
                         icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/landing'],
+                        routerLink: ['/app/orders'],
                     },
                     {
                         label: 'Stock',
                         icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/landing'],
+                        routerLink: ['/app/stock'],
                     },
                     {
                         label: 'Supplier',
