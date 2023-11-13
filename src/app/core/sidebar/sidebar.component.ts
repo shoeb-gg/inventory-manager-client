@@ -75,7 +75,7 @@ export class SidebarComponent implements OnInit {
                             {
                                 label: 'All Products',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login'],
+                                routerLink: ['/app/products'],
                             },
                             {
                                 label: 'New Product',
@@ -85,7 +85,7 @@ export class SidebarComponent implements OnInit {
                             {
                                 label: 'Product Categories',
                                 icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error'],
+                                routerLink: ['/app/products/categories'],
                             },
                         ],
                     },
