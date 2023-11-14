@@ -75,7 +75,7 @@ export class SidebarComponent implements OnInit {
                             {
                                 label: 'All Products',
                                 icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/app/products'],
+                                routerLink: ['/app/products/all'],
                             },
                             {
                                 label: 'New Product',

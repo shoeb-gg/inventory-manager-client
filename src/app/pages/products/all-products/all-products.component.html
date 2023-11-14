@@ -1,0 +1,37 @@
+<section class="w-full px-2">
+    <div class="w-full flex justify-end">
+        <!-- <div class="text-2xl font-semibold">All Cateogries</div> -->
+        <div (click)="openNewProductDialog()"><p-button class="add-category-btn" icon="pi pi-plus"></p-button></div>
+    </div>
+
+    <div class="card mt-5">
+        <p-table
+            [value]="products"
+            [paginator]="true"
+            [rows]="5"
+            [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '30rem' }"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5, 10, 25, 50, 100]"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name" style="width: 20%">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="category" style="width: 20%">Category <p-sortIcon field="category"></p-sortIcon></th>
+                    <th pSortableColumn="subcategory" style="width: 20%">Subcategory <p-sortIcon field="subcategory"></p-sortIcon></th>
+                    <th pSortableColumn="price" style="width: 15%">Price <p-sortIcon field="price"></p-sortIcon></th>
+                    <th pSortableColumn="quantityType" style="width: 25%">Quantity Type <p-sortIcon field="quantityType"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.category }}</td>
+                    <td>{{ product.subcategory }}</td>
+                    <td>{{ product.price }} {{ product.priceUnit }}</td>
+                    <td>{{ product.quantityType }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>
