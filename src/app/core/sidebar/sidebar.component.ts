@@ -22,6 +22,22 @@ export class SidebarComponent implements OnInit {
                         routerLink: ['/app/dashboard'],
                     },
                     {
+                        label: 'Products',
+                        icon: 'pi pi-fw pi-user',
+                        items: [
+                            {
+                                label: 'All Products',
+                                icon: 'pi pi-fw pi-sign-in',
+                                routerLink: ['/app/products/all'],
+                            },
+                            {
+                                label: 'Product Categories',
+                                icon: 'pi pi-fw pi-times-circle',
+                                routerLink: ['/app/products/categories'],
+                            },
+                        ],
+                    },
+                    {
                         label: 'Orders',
                         icon: 'pi pi-fw pi-globe',
                         routerLink: ['/app/orders'],
@@ -65,27 +81,6 @@ export class SidebarComponent implements OnInit {
                                 label: 'New Purchase',
                                 icon: 'pi pi-fw pi-times-circle',
                                 routerLink: ['/auth/error'],
-                            },
-                        ],
-                    },
-                    {
-                        label: 'Products',
-                        icon: 'pi pi-fw pi-user',
-                        items: [
-                            {
-                                label: 'All Products',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/app/products/all'],
-                            },
-                            {
-                                label: 'New Product',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error'],
-                            },
-                            {
-                                label: 'Product Categories',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/app/products/categories'],
                             },
                         ],
                     },

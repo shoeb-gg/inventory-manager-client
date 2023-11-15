@@ -1,1 +1,91 @@
-<p>product-details works!</p>
+<section class="w-full py-2 space-y-5">
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-1/2">
+            <label for="productName" class="font-bold block mb-2 ml-1"> Product Name </label>
+            <input pInputText id="productName" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Product Name'" />
+        </div>
+
+        <div class="w-1/2">
+            <label for="quantityType" class="font-bold block mb-2 ml-1"> Quantity Type </label>
+            <p-dropdown
+                id="quantityType"
+                [options]="quantityTypes"
+                [(ngModel)]="quantityType"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [lazy]="true"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="10"
+                [placeholder]="'Select a Quantity Type'"
+                (onClear)="onCategoryClear()"
+            ></p-dropdown>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-1/2">
+            <label for="Price" class="font-bold block mb-2 ml-1"> Price </label>
+            <input pInputText id="Price" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Price'" />
+        </div>
+
+        <div class="w-1/2">
+            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Price Unit </label>
+            <p-dropdown
+                id="PriceUnit"
+                [options]="priceUnits"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [lazy]="true"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="10"
+                [placeholder]="'Select a Price Unit'"
+            ></p-dropdown>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-1/2">
+            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Category </label>
+            <p-dropdown
+                id="PriceUnit"
+                [options]="priceUnits"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [lazy]="true"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="10"
+                [placeholder]="'Select a Price Category'"
+            ></p-dropdown>
+        </div>
+
+        <div class="w-1/2">
+            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Subcategory </label>
+            <p-dropdown
+                id="PriceUnit"
+                [options]="priceUnits"
+                [showClear]="true"
+                [autoDisplayFirst]="false"
+                [lazy]="true"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="10"
+                [placeholder]="'Select a Subcategory'"
+            ></p-dropdown>
+        </div>
+    </div>
+
+    <div class="w-full flex justify-between space-x-5">
+        <div class="w-1/2">
+            <label for="ProductDescription" class="font-bold block mb-2 ml-1"> Product Description </label>
+            <textarea class="w-full" id="ProductDescription" rows="5" cols="30" pInputTextarea [(ngModel)]="value"></textarea>
+        </div>
+
+        <div class="w-1/2 flex flex-col items-end justify-between">
+            <div class="w-full flex items-center justify-between px-2 space-x-4 mt-5">
+                <label class="font-bold block mb-1 ml-1"> Enable Operation </label>
+                <p-inputSwitch [(ngModel)]="enableOperation"></p-inputSwitch>
+            </div>
+
+            <p-button label="Create" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+        </div>
+    </div>
+</section>
