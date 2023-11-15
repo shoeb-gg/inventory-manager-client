@@ -12,7 +12,7 @@ import { ProductDetailsComponent } from 'src/app/shared/dialog/product-details/p
 })
 export class AllProductsComponent {
     constructor(private readonly dialogService: DialogService) {
-        this.openNewProductDialog();
+        // this.openNewProductDialog();
     }
 
     public ref: DynamicDialogRef;
@@ -59,7 +59,6 @@ export class AllProductsComponent {
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,
             maximizable: true,
-            resizable: true,
         });
     }
 }
