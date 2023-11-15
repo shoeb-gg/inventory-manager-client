@@ -7,6 +7,7 @@ import { CategoriesComponent } from './categories/categories.component';
 
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { TreeTableModule } from 'primeng/treetable';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 import { AllProductsComponent } from './all-products/all-products.component';
@@ -22,6 +23,7 @@ import { AllProductsComponent } from './all-products/all-products.component';
         ProductsRoutingModule,
         ButtonModule,
         TableModule,
+        TreeTableModule,
         DynamicDialogModule,
     ],
 })

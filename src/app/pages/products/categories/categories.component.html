@@ -1,60 +1,37 @@
 <section class="w-full px-2">
     <div class="w-full flex justify-end">
-        <div class="text-2xl font-semibold">####Use Tree Table component from PrimeNG</div>
         <div class=""><p-button class="add-category-btn" icon="pi pi-plus"></p-button></div>
     </div>
 
     <div class="card mt-5">
-        <p-table [value]="categories" dataKey="name" [tableStyle]="{ 'min-width': '50rem' }" [styleClass]="'p-datatable-sm'">
+        <p-treeTable
+            [value]="categories"
+            [scrollable]="true"
+            [tableStyle]="{ 'min-width': '30rem' }"
+            sortMode="multiple"
+            [paginator]="true"
+            [rows]="10"
+        >
             <ng-template pTemplate="header">
                 <tr>
-                    <th style="width: 2rem"></th>
-                    <th pSortableColumn="name" style="width: 15rem">Category <p-sortIcon field="name"></p-sortIcon></th>
-                    <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
+                    <th style="width: 18rem" [ttSortableColumn]="'name'">
+                        Category <p-treeTableSortIcon [field]="'name'"></p-treeTableSortIcon>
+                    </th>
+                    <th [ttSortableColumn]="'description'">
+                        Description <p-treeTableSortIcon [field]="'description'"></p-treeTableSortIcon>
+                    </th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-category let-expanded="expanded">
-                <tr>
-                    <td class="pr-0 py-0">
-                        <button
-                            type="button"
-                            pButton
-                            pRipple
-                            [pRowToggler]="category"
-                            class="p-button-text p-button-rounded p-button-plain"
-                            [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
-                        ></button>
+
+            <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+                <tr [ttRow]="rowNode">
+                    <td style="width: 18rem">
+                        <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+                        {{ rowData.name }}
                     </td>
-                    <td>{{ category.name }}</td>
-                    <td>{{ category.description }}</td>
+                    <td>{{ rowData.description }}</td>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="rowexpansion" let-category>
-                <tr>
-                    <td class="py-0" colspan="5">
-                        <div class="px-3">
-                            <p-table [value]="category.subCategory" dataKey="name">
-                                <ng-template pTemplate="header">
-                                    <tr class="text-sm">
-                                        <th style="width: 2.3rem"></th>
-                                        <th pSortableColumn="name" style="width: 15rem">
-                                            Sub-Category <p-sortIcon field="name"></p-sortIcon>
-                                        </th>
-                                        <th pSortableColumn="description">Description <p-sortIcon field="description"></p-sortIcon></th>
-                                    </tr>
-                                </ng-template>
-                                <ng-template pTemplate="body" let-subCategory>
-                                    <tr class="text-sm">
-                                        <td></td>
-                                        <td>{{ subCategory.name }}</td>
-                                        <td>{{ subCategory.description }}</td>
-                                    </tr>
-                                </ng-template>
-                            </p-table>
-                        </div>
-                    </td>
-                </tr>
-            </ng-template>
-        </p-table>
+        </p-treeTable>
     </div>
 </section>
