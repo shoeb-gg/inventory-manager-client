@@ -8,6 +8,11 @@ const routes: Routes = [
         pathMatch: 'full',
     },
     {
+        path: 'auth',
+        loadChildren: () =>
+            import('./core/auth/auth.module').then((m) => m.AuthModule),
+    },
+    {
         path: 'app',
         loadChildren: () =>
             import('./pages/pages.module').then((m) => m.PagesModule),
