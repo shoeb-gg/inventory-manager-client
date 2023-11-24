@@ -25,11 +25,11 @@ export interface LayoutState {
 export class LayoutService {
     constructor() {}
     config: AppConfig = {
-        ripple: false,
+        ripple: true,
         inputStyle: 'outlined',
         menuMode: 'static',
         colorScheme: 'light',
-        theme: 'lara-light-indigo',
+        theme: 'lara-light-blue',
         scale: 16,
     };
 
@@ -96,5 +96,47 @@ export class LayoutService {
 
     onConfigUpdate() {
         this.configUpdate.next(this.config);
+    }
+
+    async changeTheme(theme: string, colorScheme: string) {
+        localStorage.setItem(
+            'theme',
+            JSON.stringify({
+                theme: theme,
+                colorScheme: colorScheme,
+            })
+        );
+        const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
+        const newHref = themeLink
+            .getAttribute('href')!
+            .replace(this.config.theme, theme);
+        this.config.colorScheme;
+
+        this.replaceThemeLink(newHref, () => {
+            this.config.theme = theme;
+            this.config.colorScheme = colorScheme;
+            this.onConfigUpdate();
+        });
+        return true;
+    }
+
+    replaceThemeLink(href: string, onComplete: Function) {
+        const id = 'theme-css';
+        const themeLink = <HTMLLinkElement>document.getElementById('theme-css');
+        const cloneLinkElement = <HTMLLinkElement>themeLink.cloneNode(true);
+
+        cloneLinkElement.setAttribute('href', href);
+        cloneLinkElement.setAttribute('id', id + '-clone');
+
+        themeLink.parentNode!.insertBefore(
+            cloneLinkElement,
+            themeLink.nextSibling
+        );
+
+        cloneLinkElement.addEventListener('load', () => {
+            themeLink.remove();
+            cloneLinkElement.setAttribute('id', id);
+            onComplete();
+        });
     }
 }
