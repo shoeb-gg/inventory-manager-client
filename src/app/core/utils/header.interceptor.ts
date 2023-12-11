@@ -13,7 +13,7 @@ export class HeaderInterceptor implements HttpInterceptor {
         request: HttpRequest<unknown>,
         next: HttpHandler
     ): Observable<HttpEvent<unknown>> {
-        let newReq;
+        let newReq = request.clone();
         const token = localStorage.getItem('access_token') ?? null;
 
         if (token) {

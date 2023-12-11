@@ -10,6 +10,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { HeaderInterceptor } from './core/utils/header.interceptor';
+import { ErrorInterceptor } from './core/utils/error.interceptor';
+
+import { ToastModule } from 'primeng/toast';
 
 @NgModule({
     declarations: [AppComponent],
@@ -19,11 +22,17 @@ import { HeaderInterceptor } from './core/utils/header.interceptor';
         AppRoutingModule,
         HttpClientModule,
         SidebarModule,
+        ToastModule,
     ],
     providers: [
         {
             provide: HTTP_INTERCEPTORS,
             useClass: HeaderInterceptor,
+            multi: true,
+        },
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: ErrorInterceptor,
             multi: true,
         },
     ],

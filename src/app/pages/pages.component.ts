@@ -1,14 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { LayoutService } from '../services/layout.service';
+
+import { AuthService } from '../core/auth/auth.service';
 
 @Component({
     selector: 'app-pages',
     templateUrl: './pages.component.html',
     styleUrls: ['./pages.component.scss'],
 })
-export class PagesComponent {
-    constructor(public layoutService: LayoutService) {}
+export class PagesComponent implements OnInit {
+    constructor(
+        public layoutService: LayoutService,
+        private readonly auth: AuthService
+    ) {}
+
+    ngOnInit(): void {
+        this.auth.verifyToken().subscribe();
+    }
 
     get containerClass() {
         return {
