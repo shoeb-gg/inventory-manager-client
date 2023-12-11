@@ -23,4 +23,8 @@ export class AuthService {
         localStorage.removeItem('access_token');
         this.router.navigateByUrl('auth/login');
     }
+
+    verifyToken() {
+        return this.http.get('http://localhost:6009/api/auth/verify');
+    }
 }
