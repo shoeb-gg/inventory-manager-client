@@ -10,7 +10,7 @@ import { LayoutService } from './services/layout.service';
 export class AppComponent implements OnInit {
     constructor(public layoutService: LayoutService) {}
 
-    async ngOnInit(): Promise<void> {
+    async ngOnInit() {
         const theme = await JSON.parse(localStorage.getItem('theme') || '');
         await this.layoutService.changeTheme(theme.theme, theme.colorScheme);
     }

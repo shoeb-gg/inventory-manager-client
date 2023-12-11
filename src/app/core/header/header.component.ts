@@ -21,9 +21,14 @@ export class HeaderComponent implements OnInit {
 
     constructor(public layoutService: LayoutService) {}
 
-    ngOnInit() {
-        this.darkMode = false;
-        // this.themeToggle();
+    async ngOnInit() {
+        const currentTheme = await JSON.parse(
+            localStorage.getItem('theme') || ''
+        );
+        this.darkMode = currentTheme
+            ? currentTheme.colorScheme === 'dark'
+            : false;
+
         this.items = [
             {
                 label: 'Dark Mode Toggle',
