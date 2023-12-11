@@ -2,16 +2,14 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { SidebarModule } from 'primeng/sidebar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { LayoutService } from './services/layout.service';
-
-async function initializeApp(layoutService: LayoutService) {}
+import { HeaderInterceptor } from './core/utils/header.interceptor';
 
 @NgModule({
     declarations: [AppComponent],
@@ -24,9 +22,8 @@ async function initializeApp(layoutService: LayoutService) {}
     ],
     providers: [
         {
-            provide: APP_INITIALIZER,
-            useFactory: () => initializeApp,
-            deps: [LayoutService],
+            provide: HTTP_INTERCEPTORS,
+            useClass: HeaderInterceptor,
             multi: true,
         },
     ],

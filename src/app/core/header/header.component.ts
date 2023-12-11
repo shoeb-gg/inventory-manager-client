@@ -3,6 +3,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 
 import { LayoutService } from 'src/app/services/layout.service';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
     selector: 'app-header',
@@ -19,7 +20,10 @@ export class HeaderComponent implements OnInit {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
-    constructor(public layoutService: LayoutService) {}
+    constructor(
+        public layoutService: LayoutService,
+        private readonly auth: AuthService
+    ) {}
 
     async ngOnInit() {
         const currentTheme = await JSON.parse(
@@ -40,6 +44,9 @@ export class HeaderComponent implements OnInit {
             {
                 label: 'Logout',
                 icon: 'pi pi-power-off',
+                command: () => {
+                    this.logout();
+                },
             },
         ];
     }
@@ -52,5 +59,9 @@ export class HeaderComponent implements OnInit {
         } else {
             this.layoutService.changeTheme('lara-light-blue', 'light');
         }
+    }
+
+    logout() {
+        this.auth.logout();
     }
 }

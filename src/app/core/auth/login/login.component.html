@@ -17,6 +17,7 @@
                     <label for="email1" class="block text-900 text-xl font-medium mb-2 ml-1">Username</label>
                     <input
                         id="email1"
+                        [(ngModel)]="username"
                         type="text"
                         placeholder="Enter your username"
                         pInputText
@@ -47,7 +48,7 @@
                         </a> -->
                     </div>
 
-                    <button pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
+                    <button (click)="login()" pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
                 </div>
             </div>
         </div>
