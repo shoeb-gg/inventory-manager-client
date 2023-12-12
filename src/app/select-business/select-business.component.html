@@ -1,0 +1,23 @@
+<section class="w-full h-screen flex flex-col justify-center items-center">
+    <div class="w-5/6 text-5xl font-bold mb-8 text-center">Select Your Business</div>
+
+    <div class="card flex justify-content-center">
+        <p-listbox
+            [options]="cities"
+            [(ngModel)]="selectedCity"
+            (ngModelChange)="goToBusiness($event)"
+            [style]="{ width: '30rem' }"
+            [listStyle]="{ 'max-height': '220px' }"
+            (onClick)="goToBusiness($event)"
+            [virtualScroll]="false"
+            [virtualScrollItemSize]="43"
+        >
+            <ng-template let-city pTemplate="item">
+                <div class="w-full flex align-items-center justify-between space-x-2">
+                    <div class="text-2xl font-medium">{{ city.name }}</div>
+                    <p-button icon="pi pi-chevron-right" [rounded]="true"></p-button>
+                </div>
+            </ng-template>
+        </p-listbox>
+    </div>
+</section>
