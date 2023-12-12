@@ -6,13 +6,20 @@ import { authGuard } from './core/utils/auth.guard';
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/app/dashboard',
+        redirectTo: '/select-business',
         pathMatch: 'full',
     },
     {
         path: 'auth',
         loadChildren: () =>
             import('./core/auth/auth.module').then((m) => m.AuthModule),
+    },
+    {
+        path: 'select-business',
+        loadChildren: () =>
+            import('./select-business/select-business.module').then(
+                (m) => m.SelectBusinessModule
+            ),
     },
     {
         path: 'app',
