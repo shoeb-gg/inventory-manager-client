@@ -21,7 +21,14 @@ export class AppComponent implements OnInit {
     ) {}
 
     async ngOnInit() {
-        const theme = await JSON.parse(localStorage.getItem('theme') || '');
+        const theme = await JSON.parse(
+            localStorage.getItem('theme') ||
+                JSON.stringify({
+                    theme: 'light',
+                    colorScheme: 'lara-light-blue',
+                })
+        );
+
         await this.layoutService.changeTheme(theme.theme, theme.colorScheme);
 
         this.initToast();
