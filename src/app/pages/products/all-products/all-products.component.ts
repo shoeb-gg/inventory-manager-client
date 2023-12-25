@@ -54,7 +54,7 @@ export class AllProductsComponent {
 
     openNewProductDialog() {
         this.ref = this.dialogService.open(ProductDetailsComponent, {
-            header: 'Create new Product',
+            header: 'Register a new Product',
             width: '80%',
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,

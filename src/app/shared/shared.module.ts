@@ -1,19 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { AppMenuitemComponent } from './app.menuitem.component';
-import { ProductDetailsComponent } from './dialog/product-details/product-details.component';
-
-import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ButtonModule } from 'primeng/button';
 
+import { AppMenuitemComponent } from './app.menuitem.component';
+import { ProductDetailsComponent } from './dialog/product-details/product-details.component';
+import { BusinessDetailsComponent } from './dialog/business-details/business-details.component';
+
 @NgModule({
-    declarations: [AppMenuitemComponent, ProductDetailsComponent],
+    declarations: [
+        AppMenuitemComponent,
+        ProductDetailsComponent,
+        BusinessDetailsComponent,
+    ],
     imports: [
         CommonModule,
         RouterModule,
@@ -23,6 +28,7 @@ import { ButtonModule } from 'primeng/button';
         InputTextareaModule,
         InputSwitchModule,
         ButtonModule,
+        ReactiveFormsModule,
     ],
     exports: [AppMenuitemComponent],
 })

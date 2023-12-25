@@ -24,7 +24,7 @@ export class LoginComponent {
         this.auth.login(this.username, this.password).subscribe((r: any) => {
             if (r) {
                 localStorage.setItem('access_token', r.access_token);
-                this.router.navigateByUrl('app');
+                this.router.navigateByUrl('select-business');
             }
         });
     }
