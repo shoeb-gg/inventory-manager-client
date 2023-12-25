@@ -47,8 +47,6 @@ export class AppComponent implements OnInit {
 
         this.toast.errorToast.subscribe((r) => {
             if (r) {
-                console.log(r);
-
                 this.messageService.add({
                     severity: r.severity,
                     summary: 'Error',
