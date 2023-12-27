@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -13,7 +16,9 @@ import { BusinessDetailsComponent } from '../shared/dialog/business-details/busi
     styleUrls: ['./select-business.component.scss'],
     providers: [DialogService],
 })
-export class SelectBusinessComponent implements OnInit {
+export class SelectBusinessComponent implements OnInit, OnDestroy {
+    private _unsubscribeAll: Subject<void> = new Subject<void>();
+
     public businesses;
     public selectedbusiness;
 
@@ -45,7 +50,7 @@ export class SelectBusinessComponent implements OnInit {
             maximizable: true,
         });
 
-        this.ref.onClose.subscribe(() => {
+        this.ref.onClose.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
             this.loadBusinesses();
         });
     }
@@ -60,14 +65,23 @@ export class SelectBusinessComponent implements OnInit {
             data: business.id,
         });
 
-        this.ref.onClose.subscribe(() => {
+        this.ref.onClose.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
             this.loadBusinesses();
         });
     }
 
     loadBusinesses() {
-        this.business.getUserMultipleBusiness().subscribe((r) => {
-            this.businesses = r;
-        });
+        this.business
+            .getUserMultipleBusiness()
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((r) => {
+                this.businesses = r;
+            });
+    }
+
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 }

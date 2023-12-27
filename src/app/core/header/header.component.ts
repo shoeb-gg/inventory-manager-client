@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { MenuItem } from 'primeng/api';
 
@@ -20,12 +21,20 @@ export class HeaderComponent implements OnInit {
 
     @ViewChild('topbarmenu') menu!: ElementRef;
 
+    public shopName: string;
+
     constructor(
         public layoutService: LayoutService,
-        private readonly auth: AuthService
+        private readonly auth: AuthService,
+        private readonly router: Router
     ) {}
 
     async ngOnInit() {
+        this.shopName = localStorage.getItem('selectedBusinessName') || '';
+        if (!this.shopName) {
+            this.router.navigateByUrl('/select-business');
+        }
+
         const currentTheme = await JSON.parse(
             localStorage.getItem('theme') || ''
         );
@@ -39,6 +48,13 @@ export class HeaderComponent implements OnInit {
                 icon: 'pi pi-moon',
                 command: () => {
                     this.themeToggle();
+                },
+            },
+            {
+                label: 'Select Business',
+                icon: 'pi pi-building',
+                command: () => {
+                    this.goToSelectBusiness();
                 },
             },
             {
@@ -59,6 +75,10 @@ export class HeaderComponent implements OnInit {
         } else {
             this.layoutService.changeTheme('lara-light-blue', 'light');
         }
+    }
+
+    goToSelectBusiness() {
+        this.router.navigateByUrl('/select-business');
     }
 
     logout() {

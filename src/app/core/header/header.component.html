@@ -6,6 +6,9 @@
     <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
         <i class="pi pi-bars"></i>
     </button>
+
+    <div class="w-1/2 text-center text-2xl font-semibold">{{ shopName }}</div>
+
     <div class="layout-topbar-menu">
         <p-menu #menu [model]="items" [popup]="true"> </p-menu>
 

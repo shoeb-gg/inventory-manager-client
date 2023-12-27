@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -14,7 +16,9 @@ import { ResponseModel } from 'src/app/common/models/Response_Model';
     templateUrl: './business-details.component.html',
     styleUrls: ['./business-details.component.scss'],
 })
-export class BusinessDetailsComponent implements OnInit {
+export class BusinessDetailsComponent implements OnInit, OnDestroy {
+    private _unsubscribeAll: Subject<void> = new Subject<void>();
+
     constructor(
         private readonly formBuilder: FormBuilder,
         private readonly toast: ToastService,
@@ -39,11 +43,14 @@ export class BusinessDetailsComponent implements OnInit {
     }
 
     loadData() {
-        this.business.getBusinessDetails(this.config.data).subscribe((r) => {
-            if (r) {
-                this.businessForm.patchValue(r);
-            }
-        });
+        this.business
+            .getBusinessDetails(this.config.data)
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((r) => {
+                if (r) {
+                    this.businessForm.patchValue(r);
+                }
+            });
     }
 
     createBusiness() {
@@ -58,6 +65,7 @@ export class BusinessDetailsComponent implements OnInit {
 
         this.business
             .createBusiness(this.businessForm.value)
+            .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: ResponseModel) => {
                 if (r.status === 201) {
                     this.toast.successToast.next({
@@ -81,6 +89,7 @@ export class BusinessDetailsComponent implements OnInit {
 
         this.business
             .updateBusiness(this.config.data, this.businessForm.value)
+            .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: ResponseModel) => {
                 if (r.status === 201) {
                     this.toast.successToast.next({
@@ -90,5 +99,11 @@ export class BusinessDetailsComponent implements OnInit {
                 }
                 this.ref.close(1);
             });
+    }
+
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 }
