@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
+
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import { LayoutService } from 'src/app/services/layout.service';
 
@@ -10,7 +13,9 @@ import { Router } from '@angular/router';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent {
+export class LoginComponent implements OnDestroy {
+    private _unsubscribeAll: Subject<void> = new Subject<void>();
+
     username: string;
     password: string;
 
@@ -21,11 +26,20 @@ export class LoginComponent {
     ) {}
 
     login() {
-        this.auth.login(this.username, this.password).subscribe((r: any) => {
-            if (r) {
-                localStorage.setItem('access_token', r.access_token);
-                this.router.navigateByUrl('select-business');
-            }
-        });
+        this.auth
+            .login(this.username, this.password)
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((r: any) => {
+                if (r) {
+                    localStorage.setItem('access_token', r.access_token);
+                    this.router.navigateByUrl('select-business');
+                }
+            });
+    }
+
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 }

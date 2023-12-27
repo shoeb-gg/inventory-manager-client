@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+
+import { Subject } from 'rxjs/internal/Subject';
+import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import { LayoutService } from '../services/layout.service';
 
@@ -9,14 +12,19 @@ import { AuthService } from '../core/auth/auth.service';
     templateUrl: './pages.component.html',
     styleUrls: ['./pages.component.scss'],
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent implements OnInit, OnDestroy {
+    private _unsubscribeAll: Subject<void> = new Subject<void>();
+
     constructor(
         public layoutService: LayoutService,
         private readonly auth: AuthService
     ) {}
 
     ngOnInit(): void {
-        this.auth.verifyToken().subscribe();
+        this.auth
+            .verifyToken()
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe();
     }
 
     get containerClass() {
@@ -36,5 +44,11 @@ export class PagesComponent implements OnInit {
             'p-input-filled': this.layoutService.config.inputStyle === 'filled',
             'p-ripple-disabled': !this.layoutService.config.ripple,
         };
+    }
+
+    ngOnDestroy(): void {
+        // Unsubscribe from all subscriptions
+        this._unsubscribeAll.next();
+        this._unsubscribeAll.complete();
     }
 }
