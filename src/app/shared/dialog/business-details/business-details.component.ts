@@ -19,20 +19,30 @@ export class BusinessDetailsComponent implements OnInit {
         private readonly formBuilder: FormBuilder,
         private readonly toast: ToastService,
         private readonly business: BusinessService,
-        private readonly config: DynamicDialogConfig,
+        public config: DynamicDialogConfig,
         private readonly ref: DynamicDialogRef
     ) {}
 
     businessForm: FormGroup;
 
     ngOnInit(): void {
-        console.log(this.config.data);
-
         this.businessForm = this.formBuilder.group({
             name: ['', Validators.required],
             type_of_business: ['', Validators.required],
             address: ['', Validators.required],
             description: [''],
+        });
+
+        if (this.config.data) {
+            this.loadData();
+        }
+    }
+
+    loadData() {
+        this.business.getBusinessDetails(this.config.data).subscribe((r) => {
+            if (r) {
+                this.businessForm.patchValue(r);
+            }
         });
     }
 
@@ -45,10 +55,32 @@ export class BusinessDetailsComponent implements OnInit {
 
             return;
         }
-        console.log(this.businessForm.status);
 
         this.business
             .createBusiness(this.businessForm.value)
+            .subscribe((r: ResponseModel) => {
+                if (r.status === 201) {
+                    this.toast.successToast.next({
+                        severity: 'success',
+                        detail: r.message,
+                    });
+                }
+                this.ref.close(1);
+            });
+    }
+
+    updateBusiness() {
+        if (this.businessForm.invalid) {
+            this.toast.errorToast.next({
+                severity: 'error',
+                detail: 'Please fill out the required fields !',
+            });
+
+            return;
+        }
+
+        this.business
+            .updateBusiness(this.config.data, this.businessForm.value)
             .subscribe((r: ResponseModel) => {
                 if (r.status === 201) {
                     this.toast.successToast.next({

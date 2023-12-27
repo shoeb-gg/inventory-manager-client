@@ -18,4 +18,15 @@ export class BusinessService {
     getUserMultipleBusiness() {
         return this.http.get(this.apiUrl + '/all');
     }
+
+    getBusinessDetails(businessId: string) {
+        return this.http.get(this.apiUrl + '/' + businessId);
+    }
+
+    updateBusiness(businessId: string, businessInfo) {
+        return this.http.put<ResponseModel>(
+            this.apiUrl + '/' + businessId,
+            businessInfo
+        );
+    }
 }

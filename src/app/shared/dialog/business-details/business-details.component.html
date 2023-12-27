@@ -43,6 +43,22 @@
     </div>
 
     <div class="w-full flex justify-end">
-        <p-button (onClick)="createBusiness()" label="Create" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+        <p-button
+            (onClick)="createBusiness()"
+            *ngIf="!config.data"
+            label="Create"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+        ></p-button>
+
+        <p-button
+            (onClick)="updateBusiness()"
+            *ngIf="config.data"
+            label="Update"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+        ></p-button>
     </div>
 </section>
