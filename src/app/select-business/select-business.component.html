@@ -2,14 +2,15 @@
     <div class="w-5/6 text-5xl font-bold mb-8 text-center">Select Your Business</div>
 
     <div class="card flex flex-col justify-content-center items-center">
-        <div class="w-full flex align-items-center justify-between space-x-2 pl-3 pr-4 mb-2" (click)="openNewBusinessDialog()">
+        <div class="w-full flex align-items-center justify-between space-x-2 pl-3 pr-4 mb-2">
             <div class="text-2xl font-medium">Create New Business</div>
-            <p-button icon="pi pi-plus" [rounded]="true"></p-button>
+            <p-button (click)="openNewBusinessDialog()" icon="pi pi-plus" [rounded]="true"></p-button>
         </div>
 
         <p-listbox
-            [options]="cities"
-            [(ngModel)]="selectedCity"
+            *ngIf="businesses"
+            [options]="businesses"
+            [(ngModel)]="selectedbusiness"
             [style]="{ width: '30rem' }"
             [listStyle]="{ 'max-height': '220px' }"
             [virtualScroll]="false"
@@ -20,7 +21,7 @@
                     <div class="text-2xl font-medium">{{ business.name }}</div>
 
                     <span class="space-x-2">
-                        <p-button icon="pi pi-pencil" [rounded]="true"></p-button>
+                        <p-button (onClick)="openUpdateBusinessDialog(business)" icon="pi pi-pencil" [rounded]="true"></p-button>
                         <p-button (onClick)="goToBusiness(business)" icon="pi pi-chevron-right" [rounded]="true"></p-button
                     ></span>
                 </div>
