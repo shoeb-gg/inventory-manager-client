@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
+import { BusinessService } from '../services/business.service';
+
 import { BusinessDetailsComponent } from '../shared/dialog/business-details/business-details.component';
 
 @Component({
@@ -12,27 +14,24 @@ import { BusinessDetailsComponent } from '../shared/dialog/business-details/busi
     providers: [DialogService],
 })
 export class SelectBusinessComponent implements OnInit {
-    public cities;
-    public selectedCity;
+    public businesses;
+    public selectedbusiness;
 
     public ref: DynamicDialogRef;
 
     constructor(
         private readonly router: Router,
-        private readonly dialogService: DialogService
+        private readonly dialogService: DialogService,
+        private readonly business: BusinessService
     ) {}
 
     ngOnInit() {
-        this.cities = [
-            { name: 'New York', dummy: 'yes' },
-            { name: 'Rome', dummy: 'no' },
-        ];
-
-        this.openNewBusinessDialog();
+        this.loadBusinesses();
     }
 
-    goToBusiness(businessId: any) {
-        console.log(businessId);
+    goToBusiness(business: any) {
+        localStorage.setItem('selectedBusinessId', business.id);
+        localStorage.setItem('selectedBusinessName', business.name);
 
         this.router.navigateByUrl('app');
     }
@@ -44,6 +43,31 @@ export class SelectBusinessComponent implements OnInit {
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,
             maximizable: true,
+        });
+
+        this.ref.onClose.subscribe(() => {
+            this.loadBusinesses();
+        });
+    }
+
+    openUpdateBusinessDialog(business: any) {
+        this.ref = this.dialogService.open(BusinessDetailsComponent, {
+            header: `Update Business: ${business.name}`,
+            width: '80%',
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: true,
+            data: business.id,
+        });
+
+        this.ref.onClose.subscribe(() => {
+            this.loadBusinesses();
+        });
+    }
+
+    loadBusinesses() {
+        this.business.getUserMultipleBusiness().subscribe((r) => {
+            this.businesses = r;
         });
     }
 }
