@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { UtilitiesComponent } from './utilities.component';
 import { QuantityTypesComponent } from './quantity-types/quantity-types.component';
+import { PriceUnitsComponent } from './price-units/price-units.component';
 
 const routes: Routes = [
     {
@@ -18,10 +19,10 @@ const routes: Routes = [
                 path: 'quantity-types',
                 component: QuantityTypesComponent,
             },
-            // {
-            //     path: 'categories',
-            //     component: CategoriesComponent,
-            // },
+            {
+                path: 'price-units',
+                component: PriceUnitsComponent,
+            },
         ],
     },
 ];
