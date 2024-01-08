@@ -1,0 +1,38 @@
+<section class="w-full py-2 space-y-5" [formGroup]="priceForm">
+    <div class="w-full">
+        <label for="name" class="font-bold block mb-2 ml-1"> Price Unit Name(*) </label>
+        <input
+            pInputText
+            id="name"
+            pKeyFilter="alphanum"
+            class="w-full"
+            [placeholder]="'Enter the Price Unit Name'"
+            formControlName="name"
+        />
+    </div>
+
+    <div class="w-full">
+        <label for="abbreviation" class="font-bold block mb-2 ml-1"> Price Unit Abbreviation(*) </label>
+        <input
+            pInputText
+            id="abbreviation"
+            pKeyFilter="alphanum"
+            class="w-full"
+            [placeholder]="'Enter the Abbreviation for the Price Unit'"
+            formControlName="abbreviation"
+        />
+    </div>
+
+    <div class="w-full flex justify-end">
+        <p-button
+            (onClick)="createPrice()"
+            *ngIf="!config.data"
+            label="Create"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+        ></p-button>
+
+        <p-button *ngIf="config.data" label="Update" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+    </div>
+</section>

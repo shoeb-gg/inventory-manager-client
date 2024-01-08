@@ -6,16 +6,15 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
 import { UtilitiesService } from 'src/app/services/utilities.service';
-
-import { QuantityDetailsComponent } from 'src/app/shared/dialog/quantity-details/quantity-details.component';
+import { PriceDetailsComponent } from 'src/app/shared/dialog/price-details/price-details.component';
 
 @Component({
-    selector: 'app-quantity-types',
-    templateUrl: './quantity-types.component.html',
-    styleUrls: ['./quantity-types.component.scss'],
+    selector: 'app-price-units',
+    templateUrl: './price-units.component.html',
+    styleUrls: ['./price-units.component.scss'],
     providers: [DialogService],
 })
-export class QuantityTypesComponent implements OnInit, OnDestroy {
+export class PriceUnitsComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<void> = new Subject<void>();
 
     constructor(
@@ -23,25 +22,25 @@ export class QuantityTypesComponent implements OnInit, OnDestroy {
         private readonly dialogService: DialogService
     ) {}
 
-    public quantities = [];
+    public prices = [];
     public ref: DynamicDialogRef;
 
     ngOnInit(): void {
-        this.loadQuantities();
+        this.loadPrices();
     }
 
-    loadQuantities() {
+    loadPrices() {
         this.utilities
-            .getAllQuantities()
+            .getAllPrices()
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: any) => {
-                this.quantities = r;
+                this.prices = r;
             });
     }
 
-    openNewQuantityDialog() {
-        this.ref = this.dialogService.open(QuantityDetailsComponent, {
-            header: 'Create a new Quantity Type',
+    openNewPriceDialog() {
+        this.ref = this.dialogService.open(PriceDetailsComponent, {
+            header: 'Create a new Price Units',
             width: '80%',
             contentStyle: { overflow: 'auto' },
             baseZIndex: 10000,
@@ -49,7 +48,7 @@ export class QuantityTypesComponent implements OnInit, OnDestroy {
         });
 
         this.ref.onClose.pipe(takeUntil(this._unsubscribeAll)).subscribe(() => {
-            this.loadQuantities();
+            this.loadPrices();
         });
     }
 

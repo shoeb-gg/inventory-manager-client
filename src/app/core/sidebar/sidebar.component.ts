@@ -44,7 +44,7 @@ export class SidebarComponent implements OnInit {
                             {
                                 label: 'Price Units',
                                 icon: 'pi pi-fw pi-dollar',
-                                routerLink: [''],
+                                routerLink: ['/app/utilities/price-units'],
                             },
                             {
                                 label: 'Quantity Types',

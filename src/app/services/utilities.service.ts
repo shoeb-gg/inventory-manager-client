@@ -9,13 +9,27 @@ import { ResponseModel } from '../common/models/Response_Model';
 export class UtilitiesService {
     constructor(private readonly http: HttpClient) {}
 
-    public apiUrl = window['__env']['apiUrl'] + 'quantity';
+    public apiUrl = window['__env']['apiUrl'];
 
     getAllQuantities() {
-        return this.http.get(this.apiUrl + '/all');
+        return this.http.get(this.apiUrl + 'quantity/all');
     }
 
     createQuantity(quantityDetails) {
-        return this.http.post<ResponseModel>(this.apiUrl, quantityDetails);
+        return this.http.post<ResponseModel>(
+            this.apiUrl + 'quantity',
+            quantityDetails
+        );
+    }
+
+    getAllPrices() {
+        return this.http.get(this.apiUrl + 'price/all');
+    }
+
+    createPrice(priceDetails) {
+        return this.http.post<ResponseModel>(
+            this.apiUrl + 'price',
+            priceDetails
+        );
     }
 }

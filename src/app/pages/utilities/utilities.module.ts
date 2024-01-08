@@ -9,9 +9,10 @@ import { UtilitiesRoutingModule } from './utilities-routing.module';
 
 import { UtilitiesComponent } from './utilities.component';
 import { QuantityTypesComponent } from './quantity-types/quantity-types.component';
+import { PriceUnitsComponent } from './price-units/price-units.component';
 
 @NgModule({
-    declarations: [UtilitiesComponent, QuantityTypesComponent],
+    declarations: [UtilitiesComponent, QuantityTypesComponent, PriceUnitsComponent],
     imports: [
         CommonModule,
         UtilitiesRoutingModule,
