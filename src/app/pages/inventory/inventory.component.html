@@ -1,0 +1,34 @@
+<section class="w-full px-2">
+    <div class="w-full flex justify-end">
+        <!-- <div class="text-2xl font-semibold">All Cateogries</div> -->
+        <div>
+            <p-button class="add-category-btn"><i class="pi pi-bolt px-2" style="font-size: 1.4rem"></i></p-button>
+        </div>
+    </div>
+
+    <div class="card mt-5">
+        <p-table
+            [value]="inventory"
+            [paginator]="true"
+            [rows]="5"
+            [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '30rem' }"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5, 10, 25, 50, 100]"
+            sortMode="multiple"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name" style="width: 30%">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="stock" style="width: 20%">Stock <p-sortIcon field="stock"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{ product.name }}</td>
+                    <td>{{ product.stock }} {{ product.quantityType }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>

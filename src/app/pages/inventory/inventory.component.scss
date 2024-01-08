@@ -2,6 +2,7 @@
     .add-category-btn {
         .p-button {
             width: 6rem; //your font size here
+            @apply flex justify-center;
         }
     }
 }
