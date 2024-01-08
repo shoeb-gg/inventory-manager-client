@@ -12,12 +12,14 @@ import { ButtonModule } from 'primeng/button';
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { ProductDetailsComponent } from './dialog/product-details/product-details.component';
 import { BusinessDetailsComponent } from './dialog/business-details/business-details.component';
+import { QuantityDetailsComponent } from './dialog/quantity-details/quantity-details.component';
 
 @NgModule({
     declarations: [
         AppMenuitemComponent,
         ProductDetailsComponent,
         BusinessDetailsComponent,
+        QuantityDetailsComponent,
     ],
     imports: [
         CommonModule,
