@@ -38,68 +38,86 @@ export class SidebarComponent implements OnInit {
                         ],
                     },
                     {
-                        label: 'Orders',
-                        icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/app/orders'],
-                    },
-                    {
-                        label: 'Stock',
-                        icon: 'pi pi-fw pi-globe',
-                        routerLink: ['/app/stock'],
-                    },
-                    {
-                        label: 'Supplier',
-                        icon: 'pi pi-fw pi-user',
+                        label: 'Utilities',
+                        icon: 'pi pi-fw pi-wrench',
                         items: [
                             {
-                                label: 'All Suppliers',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login'],
+                                label: 'Price Units',
+                                icon: 'pi pi-fw pi-dollar',
+                                routerLink: [''],
                             },
                             {
-                                label: 'New Supplier',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error'],
-                            },
-                            {
-                                label: 'Supplier Categories',
-                                icon: 'pi pi-fw pi-lock',
-                                routerLink: ['/auth/access'],
+                                label: 'Quantity Types',
+                                icon: 'pi pi-fw pi-box',
+                                routerLink: ['/app/utilities/quantity-types'],
                             },
                         ],
                     },
-                    {
-                        label: 'Purchase',
-                        icon: 'pi pi-fw pi-user',
-                        items: [
-                            {
-                                label: 'All Purchases',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login'],
-                            },
-                            {
-                                label: 'New Purchase',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error'],
-                            },
-                        ],
-                    },
-                    {
-                        label: 'Operations',
-                        icon: 'pi pi-fw pi-user',
-                        items: [
-                            {
-                                label: 'All Operations',
-                                icon: 'pi pi-fw pi-sign-in',
-                                routerLink: ['/auth/login'],
-                            },
-                            {
-                                label: 'New Operation',
-                                icon: 'pi pi-fw pi-times-circle',
-                                routerLink: ['/auth/error'],
-                            },
-                        ],
-                    },
+                    // {
+                    //     label: 'Orders',
+                    //     icon: 'pi pi-fw pi-globe',
+                    //     routerLink: ['/app/orders'],
+                    // },
+
+                    // {
+                    //     label: 'Stock',
+                    //     icon: 'pi pi-fw pi-globe',
+                    //     routerLink: ['/app/stock'],
+                    // },
+
+                    // {
+                    //     label: 'Supplier',
+                    //     icon: 'pi pi-fw pi-user',
+                    //     items: [
+                    //         {
+                    //             label: 'All Suppliers',
+                    //             icon: 'pi pi-fw pi-sign-in',
+                    //             routerLink: ['/auth/login'],
+                    //         },
+                    //         {
+                    //             label: 'New Supplier',
+                    //             icon: 'pi pi-fw pi-times-circle',
+                    //             routerLink: ['/auth/error'],
+                    //         },
+                    //         {
+                    //             label: 'Supplier Categories',
+                    //             icon: 'pi pi-fw pi-lock',
+                    //             routerLink: ['/auth/access'],
+                    //         },
+                    //     ],
+                    // },
+                    // {
+                    //     label: 'Purchase',
+                    //     icon: 'pi pi-fw pi-user',
+                    //     items: [
+                    //         {
+                    //             label: 'All Purchases',
+                    //             icon: 'pi pi-fw pi-sign-in',
+                    //             routerLink: ['/auth/login'],
+                    //         },
+                    //         {
+                    //             label: 'New Purchase',
+                    //             icon: 'pi pi-fw pi-times-circle',
+                    //             routerLink: ['/auth/error'],
+                    //         },
+                    //     ],
+                    // },
+                    // {
+                    //     label: 'Operations',
+                    //     icon: 'pi pi-fw pi-user',
+                    //     items: [
+                    //         {
+                    //             label: 'All Operations',
+                    //             icon: 'pi pi-fw pi-sign-in',
+                    //             routerLink: ['/auth/login'],
+                    //         },
+                    //         {
+                    //             label: 'New Operation',
+                    //             icon: 'pi pi-fw pi-times-circle',
+                    //             routerLink: ['/auth/error'],
+                    //         },
+                    //     ],
+                    // },
                 ],
             },
         ];
