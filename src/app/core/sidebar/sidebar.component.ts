@@ -22,17 +22,22 @@ export class SidebarComponent implements OnInit {
                         routerLink: ['/app/dashboard'],
                     },
                     {
+                        label: 'Inventory',
+                        icon: 'pi pi-fw pi-box',
+                        routerLink: ['/app/inventory'],
+                    },
+                    {
                         label: 'Products',
-                        icon: 'pi pi-fw pi-user',
+                        icon: 'pi pi-fw pi-shopping-cart',
                         items: [
                             {
                                 label: 'All Products',
-                                icon: 'pi pi-fw pi-sign-in',
+                                icon: 'pi pi-fw pi-table',
                                 routerLink: ['/app/products/all'],
                             },
                             {
                                 label: 'Product Categories',
-                                icon: 'pi pi-fw pi-times-circle',
+                                icon: 'pi pi-fw pi-sitemap',
                                 routerLink: ['/app/products/categories'],
                             },
                         ],
