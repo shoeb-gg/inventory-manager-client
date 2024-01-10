@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 
 import { Injectable } from '@angular/core';
 
+import { ResponseModel } from 'src/app/common/models/Response_Model';
+
 @Injectable({
     providedIn: 'root',
 })
@@ -12,8 +14,10 @@ export class AuthService {
         private readonly router: Router
     ) {}
 
+    public apiUrl = window['__env']['apiUrl'] + 'auth/';
+
     login(username: string, password: string) {
-        return this.http.post('http://localhost:6009/api/auth/login', {
+        return this.http.post(this.apiUrl + 'login', {
             username: username,
             password: password,
         });
@@ -25,6 +29,6 @@ export class AuthService {
     }
 
     verifyToken() {
-        return this.http.get('http://localhost:6009/api/auth/verify');
+        return this.http.get<ResponseModel>(this.apiUrl + 'verify');
     }
 }

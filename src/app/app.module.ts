@@ -13,9 +13,10 @@ import { HeaderInterceptor } from './core/utils/header.interceptor';
 import { ErrorInterceptor } from './core/utils/error.interceptor';
 
 import { ToastModule } from 'primeng/toast';
+import { WakeServerComponent } from './wake-server/wake-server.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, WakeServerComponent],
     imports: [
         BrowserModule,
         BrowserAnimationsModule,

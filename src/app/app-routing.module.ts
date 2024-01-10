@@ -2,11 +2,12 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { authGuard } from './core/utils/auth.guard';
+import { WakeServerComponent } from './wake-server/wake-server.component';
 
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/select-business',
+        redirectTo: '/wake-server',
         pathMatch: 'full',
     },
     {
@@ -26,6 +27,10 @@ const routes: Routes = [
         loadChildren: () =>
             import('./pages/pages.module').then((m) => m.PagesModule),
         canActivate: [authGuard],
+    },
+    {
+        path: 'wake-server',
+        component: WakeServerComponent,
     },
 ];
 
