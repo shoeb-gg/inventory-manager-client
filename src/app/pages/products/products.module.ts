@@ -8,6 +8,7 @@ import { CategoriesComponent } from './categories/categories.component';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TreeTableModule } from 'primeng/treetable';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AllProductsComponent } from './all-products/all-products.component';
 
@@ -23,6 +24,7 @@ import { AllProductsComponent } from './all-products/all-products.component';
         ButtonModule,
         TableModule,
         TreeTableModule,
+        ProgressSpinnerModule,
     ],
 })
 export class ProductsModule {}

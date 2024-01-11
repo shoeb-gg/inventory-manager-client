@@ -1,10 +1,11 @@
 <section class="w-full px-2">
     <div class="w-full flex justify-end">
-        <div class=""><p-button class="add-category-btn" icon="pi pi-plus"></p-button></div>
+        <div class=""><p-button (onClick)="openNewCategoryDialog()" class="add-category-btn" icon="pi pi-plus"></p-button></div>
     </div>
 
     <div class="card mt-5">
         <p-treeTable
+            *ngIf="!loading"
             [value]="categories"
             [scrollable]="true"
             [tableStyle]="{ 'min-width': '30rem' }"
@@ -33,5 +34,9 @@
                 </tr>
             </ng-template>
         </p-treeTable>
+
+        <div class="flex justify-center">
+            <p-progressSpinner *ngIf="loading" strokeWidth="5" animationDuration="1s"></p-progressSpinner>
+        </div>
     </div>
 </section>

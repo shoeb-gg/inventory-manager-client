@@ -1,0 +1,69 @@
+<section class="w-full py-2 space-y-5" [formGroup]="categoryForm">
+    <div class="w-full">
+        <label for="name" class="font-bold block mb-2 ml-1"> Category Name(*) </label>
+        <input pInputText id="name" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Category Name'" formControlName="name" />
+    </div>
+
+    <div class="w-full">
+        <label for="description" class="font-bold block mb-2 ml-1"> Category Description(*) </label>
+        <input
+            pInputText
+            id="description"
+            pKeyFilter="alphanum"
+            class="w-full"
+            [placeholder]="'Enter the Description for the Category'"
+            formControlName="description"
+        />
+    </div>
+
+    <div class="w-full">
+        <div class="font-bold text-xl mb-4 mt-7 ml-1 flex justify-between items-center">
+            <span> Subcategories: ({{ subCategoryArray?.length }})</span>
+
+            <span class="space-x-5">
+                <p-button (onClick)="decreaseSubCategoryField()" icon="pi pi-minus" [raised]="true" [rounded]="true"></p-button>
+                <p-button (onClick)="increaseSubCategoryField()" icon="pi pi-plus" [raised]="true" [rounded]="true"></p-button>
+            </span>
+        </div>
+
+        <div formArrayName="SUB_CATEGORIES" class="space-y-4">
+            <div *ngFor="let data of subCategoryArray?.controls; let i = index" class="w-full flex space-x-2" [formGroupName]="i">
+                <div class="w-1/3">
+                    <label for="name" class="font-bold text-md block mb-2 ml-1"> SubCategory {{ i + 1 }} Name(*) </label>
+                    <input
+                        pInputText
+                        id="name"
+                        pKeyFilter="alphanum"
+                        class="w-full"
+                        [placeholder]="'Enter the SubCategory Name'"
+                        formControlName="name"
+                    />
+                </div>
+                <div class="w-2/3">
+                    <label for="name" class="font-bold text-md block mb-2 ml-1"> SubCategory {{ i + 1 }} Description(*) </label>
+                    <input
+                        pInputText
+                        id="name"
+                        pKeyFilter="alphanum"
+                        class="w-full"
+                        [placeholder]="'Enter the Description for the SubCategory'"
+                        formControlName="description"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w-full flex justify-end">
+        <p-button
+            (onClick)="createCategory()"
+            *ngIf="!config.data"
+            label="Create"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+        ></p-button>
+
+        <p-button *ngIf="config.data" label="Update" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+    </div>
+</section>
