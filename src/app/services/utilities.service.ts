@@ -32,4 +32,19 @@ export class UtilitiesService {
             priceDetails
         );
     }
+
+    getAllCategories() {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.get(this.apiUrl + 'category/all/' + businessId);
+    }
+
+    createCategory(categoryDetails) {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.post<ResponseModel>(
+            this.apiUrl + 'category/' + businessId,
+            categoryDetails
+        );
+    }
 }
