@@ -8,6 +8,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputSwitchModule } from 'primeng/inputswitch';
 import { ButtonModule } from 'primeng/button';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { ProductDetailsComponent } from './dialog/product-details/product-details.component';
@@ -35,6 +37,8 @@ import { CategoryDetailsComponent } from './dialog/category-details/category-det
         InputSwitchModule,
         ButtonModule,
         ReactiveFormsModule,
+        ConfirmDialogModule,
+        ProgressSpinnerModule,
     ],
     exports: [AppMenuitemComponent],
 })
