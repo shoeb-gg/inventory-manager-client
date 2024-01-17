@@ -30,7 +30,6 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.loading = true;
         this.loadCategories();
-        this.openNewCategoryDialog();
     }
 
     loadCategories() {

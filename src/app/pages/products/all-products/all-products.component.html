@@ -6,6 +6,7 @@
 
     <div class="card mt-5">
         <p-table
+            *ngIf="!loading"
             [value]="products"
             [paginator]="true"
             [rows]="5"
@@ -24,15 +25,20 @@
                     <th pSortableColumn="quantityType" style="width: 25%">Quantity Type <p-sortIcon field="quantityType"></p-sortIcon></th>
                 </tr>
             </ng-template>
+
             <ng-template pTemplate="body" let-product>
-                <tr>
+                <tr class="cursor-pointer" (click)="openEditProductDialog(product)">
                     <td>{{ product.name }}</td>
                     <td>{{ product.category }}</td>
                     <td>{{ product.subcategory }}</td>
-                    <td>{{ product.price }} {{ product.priceUnit }}</td>
-                    <td>{{ product.quantityType }}</td>
+                    <td>{{ product.price_amount }} {{ product.price_unit }}</td>
+                    <td>{{ product.quantity_type }}</td>
                 </tr>
             </ng-template>
         </p-table>
+
+        <div *ngIf="loading" class="flex justify-center">
+            <p-progressSpinner strokeWidth="5" animationDuration="1s"></p-progressSpinner>
+        </div>
     </div>
 </section>

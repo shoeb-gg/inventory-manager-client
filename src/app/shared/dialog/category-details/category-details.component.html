@@ -29,10 +29,10 @@
         <div formArrayName="SUB_CATEGORIES" class="space-y-4">
             <div *ngFor="let data of subCategoryArray?.controls; let i = index" class="w-full flex space-x-2" [formGroupName]="i">
                 <div class="w-1/3">
-                    <label for="name" class="font-bold text-md block mb-2 ml-1"> SubCategory {{ i + 1 }} Name(*) </label>
+                    <label for="{{ i }}name" class="font-bold text-md block mb-2 ml-1"> SubCategory {{ i + 1 }} Name(*) </label>
                     <input
                         pInputText
-                        id="name"
+                        id="{{ i }}name"
                         pKeyFilter="alphanum"
                         class="w-full"
                         [placeholder]="'Enter the SubCategory Name'"
@@ -40,10 +40,12 @@
                     />
                 </div>
                 <div class="w-2/3">
-                    <label for="name" class="font-bold text-md block mb-2 ml-1"> SubCategory {{ i + 1 }} Description(*) </label>
+                    <label for="{{ i }}description" class="font-bold text-md block mb-2 ml-1">
+                        SubCategory {{ i + 1 }} Description(*)
+                    </label>
                     <input
                         pInputText
-                        id="name"
+                        id="{{ i }}description"
                         pKeyFilter="alphanum"
                         class="w-full"
                         [placeholder]="'Enter the Description for the SubCategory'"

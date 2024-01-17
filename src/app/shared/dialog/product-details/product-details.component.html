@@ -1,23 +1,26 @@
-<section class="w-full py-2 space-y-5">
+<section class="w-full py-2 space-y-5" [formGroup]="productForm" *ngIf="!loading">
     <div class="w-full flex items-center justify-between space-x-5">
         <div class="w-1/2">
-            <label for="productName" class="font-bold block mb-2 ml-1"> Product Name </label>
-            <input pInputText id="productName" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Product Name'" />
+            <label for="productName" class="font-bold block mb-2 ml-1"> Product Name(*) </label>
+            <input
+                pInputText
+                id="productName"
+                pKeyFilter="alphanum"
+                class="w-full"
+                [placeholder]="'Enter the Product Name'"
+                formControlName="name"
+            />
         </div>
 
         <div class="w-1/2">
-            <label for="quantityType" class="font-bold block mb-2 ml-1"> Quantity Type </label>
+            <label for="quantityType" class="font-bold block mb-2 ml-1"> Quantity Type(*) </label>
             <p-dropdown
                 id="quantityType"
-                [options]="quantityTypes"
-                [(ngModel)]="quantityType"
-                [showClear]="true"
+                [options]="quantity_types"
+                optionLabel="name"
+                formControlName="quantity_type"
                 [autoDisplayFirst]="false"
-                [lazy]="true"
-                [virtualScroll]="true"
-                [virtualScrollItemSize]="10"
                 [placeholder]="'Select a Quantity Type'"
-                (onClear)="onCategoryClear()"
             ></p-dropdown>
         </div>
     </div>
@@ -25,19 +28,24 @@
     <div class="w-full flex items-center justify-between space-x-5">
         <div class="w-1/2">
             <label for="Price" class="font-bold block mb-2 ml-1"> Price </label>
-            <input pInputText id="Price" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Price'" />
+            <input
+                pInputText
+                id="Price"
+                pKeyFilter="alphanum"
+                class="w-full"
+                [placeholder]="'Enter the Price'"
+                formControlName="price_amount"
+            />
         </div>
 
         <div class="w-1/2">
-            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Price Unit </label>
+            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Price Unit(*) </label>
             <p-dropdown
                 id="PriceUnit"
-                [options]="priceUnits"
-                [showClear]="true"
+                [options]="price_units"
+                optionLabel="name"
+                formControlName="price_unit"
                 [autoDisplayFirst]="false"
-                [lazy]="true"
-                [virtualScroll]="true"
-                [virtualScrollItemSize]="10"
                 [placeholder]="'Select a Price Unit'"
             ></p-dropdown>
         </div>
@@ -45,29 +53,25 @@
 
     <div class="w-full flex items-center justify-between space-x-5">
         <div class="w-1/2">
-            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Category </label>
+            <label for="category" class="font-bold block mb-2 ml-1"> Category </label>
             <p-dropdown
-                id="PriceUnit"
-                [options]="priceUnits"
-                [showClear]="true"
+                id="category"
+                [options]="categories"
+                optionLabel="name"
+                formControlName="category"
                 [autoDisplayFirst]="false"
-                [lazy]="true"
-                [virtualScroll]="true"
-                [virtualScrollItemSize]="10"
                 [placeholder]="'Select a Price Category'"
             ></p-dropdown>
         </div>
 
-        <div class="w-1/2">
-            <label for="PriceUnit" class="font-bold block mb-2 ml-1"> Subcategory </label>
+        <div class="w-1/2" *ngIf="productForm.value.category">
+            <label for="subcategory" class="font-bold block mb-2 ml-1"> Subcategory </label>
             <p-dropdown
-                id="PriceUnit"
-                [options]="priceUnits"
-                [showClear]="true"
+                id="subcategory"
+                [options]="productForm.value.category['SUB_CATEGORIES']"
+                optionLabel="name"
+                formControlName="subcategory"
                 [autoDisplayFirst]="false"
-                [lazy]="true"
-                [virtualScroll]="true"
-                [virtualScrollItemSize]="10"
                 [placeholder]="'Select a Subcategory'"
             ></p-dropdown>
         </div>
@@ -76,16 +80,43 @@
     <div class="w-full flex justify-between space-x-5">
         <div class="w-1/2">
             <label for="ProductDescription" class="font-bold block mb-2 ml-1"> Product Description </label>
-            <textarea class="w-full" id="ProductDescription" rows="5" cols="30" pInputTextarea [(ngModel)]="value"></textarea>
+            <textarea class="w-full" id="ProductDescription" rows="5" cols="30" pInputTextarea formControlName="description"></textarea>
         </div>
 
         <div class="w-1/2 flex flex-col items-end justify-between">
             <div class="w-full flex items-center justify-between px-2 space-x-4 mt-5">
-                <label class="font-bold block mb-1 ml-1"> Enable Operation </label>
-                <p-inputSwitch [(ngModel)]="enableOperation"></p-inputSwitch>
+                <label for="enableOperation" class="font-bold block mb-1 ml-1"> Enable Operation </label>
+                <p-inputSwitch id="enableOperation" formControlName="enable_operation"></p-inputSwitch>
             </div>
 
-            <p-button label="Create" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+            <p-button (onClick)="createProduct()" *ngIf="!config.data" label="Create" icon="pi pi-check" [raised]="true" [rounded]="true">
+            </p-button>
+
+            <div class="space-x-2">
+                <p-button
+                    (onClick)="updateBusiness()"
+                    *ngIf="config.data"
+                    label="Update"
+                    icon="pi pi-check"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+
+                <p-button
+                    (onClick)="deleteProduct($event)"
+                    *ngIf="config.data"
+                    label="Delete"
+                    icon="pi pi-check"
+                    [raised]="true"
+                    [rounded]="true"
+                    severity="danger"
+                ></p-button>
+            </div>
         </div>
     </div>
 </section>
+
+<p-confirmDialog></p-confirmDialog>
+<div *ngIf="loading" class="flex justify-center">
+    <p-progressSpinner strokeWidth="5" animationDuration="1s"></p-progressSpinner>
+</div>
