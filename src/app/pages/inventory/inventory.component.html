@@ -1,14 +1,14 @@
 <section class="w-full px-2">
     <div class="w-full flex justify-end">
-        <!-- <div class="text-2xl font-semibold">All Cateogries</div> -->
         <div>
-            <p-button class="add-category-btn"><i class="pi pi-bolt px-2" style="font-size: 1.4rem"></i></p-button>
+            <p-button (onClick)="syncStock()" class="add-category-btn"><i class="pi pi-sync px-2" style="font-size: 1.4rem"></i></p-button>
         </div>
     </div>
 
-    <div class="card mt-5">
+    <div class="card mt-2">
         <p-table
-            [value]="inventory"
+            *ngIf="!loading"
+            [value]="stock"
             [paginator]="true"
             [rows]="5"
             [showCurrentPageReport]="true"
@@ -19,16 +19,37 @@
         >
             <ng-template pTemplate="header">
                 <tr>
-                    <th pSortableColumn="name" style="width: 30%">Name <p-sortIcon field="name"></p-sortIcon></th>
-                    <th pSortableColumn="stock" style="width: 20%">Stock <p-sortIcon field="stock"></p-sortIcon></th>
+                    <th pSortableColumn="name" style="width: 25%">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="stock" style="width: 25%">Stock <p-sortIcon field="stock"></p-sortIcon></th>
                 </tr>
             </ng-template>
+
             <ng-template pTemplate="body" let-product>
                 <tr>
                     <td>{{ product.name }}</td>
-                    <td>{{ product.stock }} {{ product.quantityType }}</td>
+                    <td class="text-lg">
+                        <!-- <p-inputNumber class="text-lg" [(ngModel)]="product.stock" inputId="integeronly"> </p-inputNumber> -->
+
+                        <p-inputNumber
+                            [(ngModel)]="product.count"
+                            [showButtons]="true"
+                            buttonLayout="horizontal"
+                            [step]="1"
+                            decrementButtonClass="p-button-danger"
+                            incrementButtonClass="p-button-success"
+                            incrementButtonIcon="pi pi-plus"
+                            decrementButtonIcon="pi pi-minus"
+                            [min]="0"
+                        ></p-inputNumber>
+
+                        {{ product.quantity_type }}
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
+
+        <div *ngIf="loading" class="flex justify-center">
+            <p-progressSpinner strokeWidth="5" animationDuration="1s"></p-progressSpinner>
+        </div>
     </div>
 </section>
