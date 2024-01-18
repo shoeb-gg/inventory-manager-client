@@ -61,8 +61,6 @@ export class AllProductsComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: any) => {
                 if (r) {
-                    this.loadUtilities(r);
-
                     this.categories = r.categories;
                     this.quantity_types = r.quantity_types;
                     this.price_units = r.price_units;
