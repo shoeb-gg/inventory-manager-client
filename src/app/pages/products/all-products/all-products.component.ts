@@ -103,9 +103,8 @@ export class AllProductsComponent implements OnInit, OnDestroy {
             });
         });
 
-        this.loading = false;
-
         this.products = newProductArr;
+        this.loading = false;
     }
 
     openNewProductDialog() {
