@@ -97,7 +97,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
                         return x.category === cat.id;
                     });
 
-                    let subcategory = category.SUB_CATEGORIES.find((scat) => {
+                    let subcategory = category?.SUB_CATEGORIES.find((scat) => {
                         return x.subcategory === scat.id;
                     });
 
@@ -114,8 +114,8 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
                         description: x.description,
                         price_amount: x.price_amount,
                         enable_operation: x.enable_operation,
-                        category: category,
-                        subcategory: subcategory,
+                        category: category ? category : null,
+                        subcategory: subcategory ? subcategory : null,
                         quantity_type: quantity_type,
                         price_unit: price_unit,
                     };
