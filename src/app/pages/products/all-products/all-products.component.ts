@@ -82,7 +82,7 @@ export class AllProductsComponent implements OnInit, OnDestroy {
 
             let subcategory = category?.SUB_CATEGORIES.find((scat) => {
                 return x.subcategory === scat.id;
-            }).name;
+            })?.name;
 
             let quantity_type = this.quantity_types.find((quan) => {
                 return x.quantity_type === quan.id;
@@ -95,7 +95,7 @@ export class AllProductsComponent implements OnInit, OnDestroy {
             newProductArr.push({
                 ...x,
                 category: category ? category.name : '',
-                subcategory: subcategory,
+                subcategory: subcategory ? subcategory : '',
                 quantity_type: quantity_type,
                 price_unit: price_unit,
             });
