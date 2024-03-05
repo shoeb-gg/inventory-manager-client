@@ -40,6 +40,13 @@ const routes: Routes = [
                     ),
             },
             {
+                path: 'purchases',
+                loadChildren: () =>
+                    import('./purchases/purchases.module').then(
+                        (m) => m.PurchasesModule
+                    ),
+            },
+            {
                 path: 'inventory',
                 loadChildren: () =>
                     import('./inventory/inventory.module').then(

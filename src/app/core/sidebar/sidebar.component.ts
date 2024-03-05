@@ -43,6 +43,22 @@ export class SidebarComponent implements OnInit {
                         ],
                     },
                     {
+                        label: 'Puchases',
+                        icon: 'pi pi-fw pi-shopping-bag',
+                        items: [
+                            {
+                                label: 'All Puchases',
+                                icon: 'pi pi-fw pi-table',
+                                routerLink: ['/app/purchases/all'],
+                            },
+                            {
+                                label: 'Sellers',
+                                icon: 'pi pi-fw pi-users',
+                                routerLink: ['/app/purchases/sellers'],
+                            },
+                        ],
+                    },
+                    {
                         label: 'Utilities',
                         icon: 'pi pi-fw pi-wrench',
                         items: [
