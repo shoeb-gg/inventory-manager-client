@@ -94,12 +94,13 @@
 
             <div class="space-x-2">
                 <p-button
-                    (onClick)="updateBusiness()"
+                    (onClick)="updateProduct()"
                     *ngIf="config.data"
                     label="Update"
                     icon="pi pi-check"
                     [raised]="true"
                     [rounded]="true"
+                    severity="warning"
                 ></p-button>
 
                 <p-button

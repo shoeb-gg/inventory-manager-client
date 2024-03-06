@@ -52,9 +52,9 @@ export class SidebarComponent implements OnInit {
                                 routerLink: ['/app/purchases/all'],
                             },
                             {
-                                label: 'Sellers',
+                                label: 'Suppliers',
                                 icon: 'pi pi-fw pi-users',
-                                routerLink: ['/app/purchases/sellers'],
+                                routerLink: ['/app/purchases/suppliers'],
                             },
                         ],
                     },
