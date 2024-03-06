@@ -127,7 +127,7 @@ export class ProductDetailsComponent implements OnInit, OnDestroy {
             });
     }
 
-    updateBusiness() {
+    updateProduct() {
         if (this.productForm.invalid) {
             this.toast.errorToast.next({
                 severity: 'error',

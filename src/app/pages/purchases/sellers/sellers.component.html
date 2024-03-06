@@ -1,1 +1,32 @@
-<p>sellers works!</p>
+<section class="w-full px-2">
+    <div class="w-full flex justify-end">
+        <!-- <div class="text-2xl font-semibold">All Cateogries</div> -->
+        <div><p-button (onClick)="openNewSellerDialog()" class="add-category-btn" icon="pi pi-plus"></p-button></div>
+    </div>
+
+    <div class="card mt-5">
+        <p-table
+            [value]="sellers"
+            [paginator]="true"
+            [rows]="5"
+            [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '30rem' }"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[5, 10, 25, 50, 100]"
+            sortMode="multiple"
+        >
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="name" style="width: 30%">Name <p-sortIcon field="name"></p-sortIcon></th>
+                    <th pSortableColumn="name" style="width: 40%">Phone <p-sortIcon field="phone"></p-sortIcon></th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-seller>
+                <tr class="cursor-pointer" (click)="openEditSellerDialog(seller)">
+                    <td>{{ seller.name }}</td>
+                    <td>{{ seller.phone }}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</section>

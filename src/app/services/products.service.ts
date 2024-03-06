@@ -17,7 +17,7 @@ export class ProductsService {
         return this.http.get(this.apiUrl + 'all/' + businessId);
     }
 
-    getproduct(productId) {
+    getproduct(productId: string) {
         return this.http.get(this.apiUrl + productId);
     }
 
@@ -37,7 +37,7 @@ export class ProductsService {
         );
     }
 
-    deleteProduct(productId) {
+    deleteProduct(productId: string) {
         return this.http.delete<ResponseModel>(this.apiUrl + productId);
     }
 }

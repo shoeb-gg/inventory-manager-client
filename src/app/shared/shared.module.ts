@@ -17,6 +17,7 @@ import { BusinessDetailsComponent } from './dialog/business-details/business-det
 import { QuantityDetailsComponent } from './dialog/quantity-details/quantity-details.component';
 import { PriceDetailsComponent } from './dialog/price-details/price-details.component';
 import { CategoryDetailsComponent } from './dialog/category-details/category-details.component';
+import { SellerDetailsComponent } from './dialog/seller-details/seller-details.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { CategoryDetailsComponent } from './dialog/category-details/category-det
         QuantityDetailsComponent,
         PriceDetailsComponent,
         CategoryDetailsComponent,
+        SellerDetailsComponent,
     ],
     imports: [
         CommonModule,
