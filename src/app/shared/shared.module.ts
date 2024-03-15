@@ -18,6 +18,7 @@ import { QuantityDetailsComponent } from './dialog/quantity-details/quantity-det
 import { PriceDetailsComponent } from './dialog/price-details/price-details.component';
 import { CategoryDetailsComponent } from './dialog/category-details/category-details.component';
 import { SellerDetailsComponent } from './dialog/seller-details/seller-details.component';
+import { PurchaseDetailsComponent } from './dialog/purchase-details/purchase-details.component';
 
 @NgModule({
     declarations: [
@@ -28,6 +29,7 @@ import { SellerDetailsComponent } from './dialog/seller-details/seller-details.c
         PriceDetailsComponent,
         CategoryDetailsComponent,
         SellerDetailsComponent,
+        PurchaseDetailsComponent,
     ],
     imports: [
         CommonModule,
