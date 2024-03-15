@@ -5,11 +5,7 @@ import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 
-import {
-    ConfirmationService,
-    MessageService,
-    ConfirmEventType,
-} from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 import {
     DialogService,

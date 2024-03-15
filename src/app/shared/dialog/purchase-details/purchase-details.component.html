@@ -1,0 +1,113 @@
+<section class="w-full py-2 space-y-5" [formGroup]="purchaseForm" *ngIf="!loading">
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-full">
+            <label for="productName" class="font-bold block mb-2 ml-1"> Product Name(*) </label>
+            <p-dropdown
+                [options]="products"
+                formControlName="product"
+                optionLabel="name"
+                [filter]="true"
+                filterBy="name"
+                styleClass="w-full"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="20"
+                [autoDisplayFirst]="false"
+                [placeholder]="'Enter the Product Name for Purchase'"
+            >
+                <ng-template let-product>
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ product.name }}</div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-product>
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ product.name }}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-full">
+            <label for="sellerName" class="font-bold block mb-2 ml-1"> Seller Name </label>
+            <p-dropdown
+                [options]="sellers"
+                formControlName="seller"
+                optionLabel="name"
+                [filter]="true"
+                filterBy="name"
+                styleClass="w-full"
+                [virtualScroll]="true"
+                [virtualScrollItemSize]="20"
+                [autoDisplayFirst]="false"
+                [placeholder]="'Enter the Seller Name'"
+            >
+                <ng-template let-seller>
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ seller.name }}</div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-seller>
+                    <div class="flex align-items-center gap-2">
+                        <div>{{ seller.name }}</div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-full">
+            <label for="quantity" class="font-bold block mb-2 ml-1"> Quantity(*) </label>
+            <input
+                pInputText
+                id="quantity"
+                type="number"
+                class="w-full"
+                [placeholder]="'Enter the Purchase Quantity'"
+                formControlName="quantity"
+            />
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-between space-x-5">
+        <div class="w-full">
+            <label for="description" class="font-bold block mb-2 ml-1"> Description</label>
+            <textarea class="w-full" id="description" rows="5" cols="30" pInputTextarea formControlName="description"></textarea>
+        </div>
+    </div>
+
+    <div class="w-full flex items-center justify-end space-x-5">
+        <p-button
+            (onClick)="createPurchase()"
+            *ngIf="config.data"
+            label="Create"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+        ></p-button>
+
+        <p-button
+            (onClick)="updatePurchase()"
+            *ngIf="config.data"
+            label="Update"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+            severity="warning"
+        ></p-button>
+
+        <!-- <p-button
+            (onClick)="deletePurchase($event)"
+            *ngIf="config.data"
+            label="Delete"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+            severity="danger"
+        ></p-button> -->
+    </div>
+</section>

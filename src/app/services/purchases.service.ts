@@ -38,4 +38,19 @@ export class PurchasesService {
             this.apiUrl + 'seller/' + sellerId
         );
     }
+
+    getAllPurchases() {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.get(this.apiUrl + 'purchase/all/' + businessId);
+    }
+
+    createurchase(purchaseInfo) {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.post<ResponseModel>(
+            this.apiUrl + 'purchase/' + businessId,
+            purchaseInfo
+        );
+    }
 }
