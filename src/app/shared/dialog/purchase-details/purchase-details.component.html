@@ -31,7 +31,7 @@
 
     <div class="w-full flex items-center justify-between space-x-5">
         <div class="w-full">
-            <label for="sellerName" class="font-bold block mb-2 ml-1"> Seller Name </label>
+            <label for="sellerName" class="font-bold block mb-2 ml-1"> Supplier Name </label>
             <p-dropdown
                 [options]="sellers"
                 formControlName="seller"
@@ -42,7 +42,7 @@
                 [virtualScroll]="true"
                 [virtualScrollItemSize]="20"
                 [autoDisplayFirst]="false"
-                [placeholder]="'Enter the Seller Name'"
+                [placeholder]="'Enter the Supplier Name'"
             >
                 <ng-template let-seller>
                     <div class="flex align-items-center gap-2">
