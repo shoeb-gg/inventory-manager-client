@@ -6,8 +6,11 @@
         }
     }
 
-    .p-inputtext {
-        font-size: 1.2rem;
-        text-align: center;
+    .add-purchase-btn {
+        .p-button {
+            // width: 6rem; //your font size here
+            padding: 0.5rem 1rem;
+            @apply flex justify-center;
+        }
     }
 }

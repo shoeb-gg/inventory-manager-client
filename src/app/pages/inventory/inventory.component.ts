@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+
 import { Subject } from 'rxjs/internal/Subject';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
@@ -7,13 +9,18 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { ResponseModel } from 'src/app/common/models/Response_Model';
 
 import { InventoryService } from 'src/app/services/inventory.service';
+import { ProductsService } from 'src/app/services/products.service';
+import { PurchasesService } from 'src/app/services/purchases.service';
 import { ToastService } from 'src/app/services/toast.service';
 import { UtilitiesService } from 'src/app/services/utilities.service';
+
+import { PurchaseDetailsComponent } from 'src/app/shared/dialog/purchase-details/purchase-details.component';
 
 @Component({
     selector: 'app-inventory',
     templateUrl: './inventory.component.html',
     styleUrls: ['./inventory.component.scss'],
+    providers: [DialogService],
 })
 export class InventoryComponent implements OnInit, OnDestroy {
     private _unsubscribeAll: Subject<void> = new Subject<void>();
@@ -21,8 +28,13 @@ export class InventoryComponent implements OnInit, OnDestroy {
     constructor(
         private readonly inventory: InventoryService,
         private readonly utilities: UtilitiesService,
+        private readonly purchases: PurchasesService,
+        private readonly dialogService: DialogService,
+        private readonly product: ProductsService,
         private readonly toast: ToastService
     ) {}
+
+    public ref: DynamicDialogRef;
 
     public loading: boolean = false;
 
@@ -30,6 +42,9 @@ export class InventoryComponent implements OnInit, OnDestroy {
     public rawStock: any[] = [];
 
     public quantity_types: any[];
+
+    public products: any[];
+    public sellers: any[];
 
     ngOnInit(): void {
         this.load();
@@ -40,6 +55,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
         forkJoin({
             inventories: this.inventory.getAllStocks(),
             quantity_types: this.utilities.getAllQuantities(),
+            products: this.product.getAllproducts(),
+            sellers: this.purchases.getAllSellers(),
         })
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: any) => {
@@ -47,6 +64,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
                     this.quantity_types = r.quantity_types;
 
                     this.prepareStock(r.inventories);
+                    this.products = r.products;
+                    this.sellers = r.sellers;
                 } else {
                     this.loading = false;
                 }
@@ -94,7 +113,29 @@ export class InventoryComponent implements OnInit, OnDestroy {
                         detail: r.message,
                     });
 
-                    console.log(r);
+                    this.load();
+                }
+            });
+    }
+
+    makePurchase(product) {
+        this.ref = this.dialogService.open(PurchaseDetailsComponent, {
+            header: `Purchase ${product.name}`,
+            width: '80%',
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: true,
+            data: {
+                product: product,
+                products: this.products,
+                sellers: this.sellers,
+            },
+        });
+        this.ref.onClose
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((r) => {
+                if (r) {
+                    this.loading = true;
                     this.load();
                 }
             });
