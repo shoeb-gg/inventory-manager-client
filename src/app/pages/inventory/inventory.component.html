@@ -20,7 +20,8 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="name" style="width: 25%">Name <p-sortIcon field="name"></p-sortIcon></th>
-                    <th pSortableColumn="stock" style="width: 25%">Stock <p-sortIcon field="stock"></p-sortIcon></th>
+                    <th pSortableColumn="count" style="width: 25%">Stock <p-sortIcon field="stock"></p-sortIcon></th>
+                    <th style="width: 5%"></th>
                 </tr>
             </ng-template>
 
@@ -28,11 +29,9 @@
                 <tr>
                     <td>{{ product.name }}</td>
                     <td class="text-lg">
-                        <!-- <p-inputNumber class="text-lg" [(ngModel)]="product.stock" inputId="integeronly"> </p-inputNumber> -->
-
                         <p-inputNumber
                             [(ngModel)]="product.count"
-                            [showButtons]="true"
+                            [showButtons]="false"
                             buttonLayout="horizontal"
                             [step]="1"
                             decrementButtonClass="p-button-danger"
@@ -43,6 +42,12 @@
                         ></p-inputNumber>
 
                         {{ product.quantity_type }}
+                    </td>
+
+                    <td>
+                        <p-button (onClick)="makePurchase(product)" class="add-purchase-btn"
+                            ><i class="pi pi-cart-plus" style="font-size: 1.5rem"></i
+                        ></p-button>
                     </td>
                 </tr>
             </ng-template>
