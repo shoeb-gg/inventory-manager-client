@@ -10,11 +10,11 @@
             *ngIf="!loading"
             [value]="stock"
             [paginator]="true"
-            [rows]="5"
+            [rows]="10"
             [showCurrentPageReport]="true"
             [tableStyle]="{ 'min-width': '30rem' }"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[5, 10, 25, 50, 100]"
+            [rowsPerPageOptions]="[10, 25, 50, 100]"
             sortMode="multiple"
         >
             <ng-template pTemplate="header">
