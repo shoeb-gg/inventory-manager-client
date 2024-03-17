@@ -66,9 +66,11 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
         this.products = this.config.data.products;
         this.sellers = this.config.data.sellers;
 
-        this.loading = false;
+        if (this.config.data.purchase) {
+            this.purchaseForm.patchValue(this.config.data.purchase);
+        }
 
-        // this.loadUtilities();
+        this.loading = false;
     }
 
     createPurchase() {
@@ -89,10 +91,8 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
                 : null,
         };
 
-        console.log(newPurchase);
-
         this.purchases
-            .createurchase(newPurchase)
+            .createPurchase(newPurchase)
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: ResponseModel) => {
                 if (r.status === 201) {
@@ -104,7 +104,40 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
                 this.ref.close(1);
             });
     }
-    updatePurchase() {}
+
+    updatePurchase() {
+        console.log(this.purchaseForm.value);
+
+        if (this.purchaseForm.invalid) {
+            this.toast.errorToast.next({
+                severity: 'error',
+                detail: 'Please fill out the required fields !',
+            });
+
+            return;
+        }
+
+        let updatedPurchase = {
+            ...this.purchaseForm.value,
+            product: this.purchaseForm.value.product.id,
+            seller: this.purchaseForm.value.seller
+                ? this.purchaseForm.value.seller.id
+                : null,
+        };
+
+        this.purchases
+            .updatePurchase(this.config.data.purchase.id, updatedPurchase)
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((r: ResponseModel) => {
+                if (r.status === 201) {
+                    this.toast.successToast.next({
+                        severity: 'success',
+                        detail: r.message,
+                    });
+                }
+                this.ref.close(1);
+            });
+    }
     deletePurchase() {}
 
     ngOnDestroy(): void {

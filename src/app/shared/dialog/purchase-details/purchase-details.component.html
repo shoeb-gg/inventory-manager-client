@@ -83,7 +83,7 @@
     <div class="w-full flex items-center justify-end space-x-5">
         <p-button
             (onClick)="createPurchase()"
-            *ngIf="config.data"
+            *ngIf="!config.data.purchase"
             label="Create"
             icon="pi pi-check"
             [raised]="true"
@@ -92,7 +92,7 @@
 
         <p-button
             (onClick)="updatePurchase()"
-            *ngIf="config.data"
+            *ngIf="config.data.purchase"
             label="Update"
             icon="pi pi-check"
             [raised]="true"

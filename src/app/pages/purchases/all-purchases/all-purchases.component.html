@@ -26,8 +26,8 @@
 
             <ng-template pTemplate="body" let-purchase>
                 <tr class="cursor-pointer" (click)="openEditPurchaseDialog(purchase)">
-                    <td>{{ purchase.product }}</td>
-                    <td>{{ purchase.seller }}</td>
+                    <td>{{ purchase.product.name }}</td>
+                    <td>{{ purchase.seller.name }}</td>
                     <td>{{ purchase.quantity }}</td>
                 </tr>
             </ng-template>
