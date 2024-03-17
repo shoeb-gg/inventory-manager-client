@@ -75,11 +75,11 @@ export class AllPurchasesComponent implements OnInit, OnDestroy {
         purchaseArr.forEach((x) => {
             let product = this.products.find((prod) => {
                 return x.product === prod.id;
-            }).name;
+            });
 
             let seller = this.sellers.find((sel) => {
                 return x.seller === sel.id;
-            }).name;
+            });
 
             newPurchaseArr.push({
                 ...x,
@@ -108,11 +108,32 @@ export class AllPurchasesComponent implements OnInit, OnDestroy {
         this.ref.onClose
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r) => {
-                if (r) this.loadPurchases();
+                if (r) {
+                    this.loading = true;
+                    this.loadPurchases();
+                }
             });
     }
 
-    openEditPurchaseDialog(purchase) {}
+    openEditPurchaseDialog(purchase) {
+        this.ref = this.dialogService.open(PurchaseDetailsComponent, {
+            header: `Edit Purchase of ${purchase.product.name}`,
+            width: '80%',
+            contentStyle: { overflow: 'auto' },
+            baseZIndex: 10000,
+            maximizable: true,
+            data: {
+                purchase: purchase,
+                products: this.products,
+                sellers: this.sellers,
+            },
+        });
+        this.ref.onClose
+            .pipe(takeUntil(this._unsubscribeAll))
+            .subscribe((r) => {
+                if (r) this.loadPurchases();
+            });
+    }
 
     ngOnDestroy(): void {
         // Unsubscribe from all subscriptions

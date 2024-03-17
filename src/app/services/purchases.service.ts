@@ -45,11 +45,18 @@ export class PurchasesService {
         return this.http.get(this.apiUrl + 'purchase/all/' + businessId);
     }
 
-    createurchase(purchaseInfo) {
+    createPurchase(purchaseInfo) {
         let businessId = localStorage.getItem('selectedBusinessId');
 
         return this.http.post<ResponseModel>(
             this.apiUrl + 'purchase/' + businessId,
+            purchaseInfo
+        );
+    }
+
+    updatePurchase(purchaseId: string, purchaseInfo) {
+        return this.http.put<ResponseModel>(
+            this.apiUrl + 'purchase/' + purchaseId,
             purchaseInfo
         );
     }
