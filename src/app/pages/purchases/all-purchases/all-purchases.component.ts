@@ -88,8 +88,9 @@ export class AllPurchasesComponent implements OnInit, OnDestroy {
             });
 
             this.allPurchases = newPurchaseArr;
-            this.loading = false;
         });
+
+        this.loading = false;
     }
 
     openNewPurchasesDialog() {
