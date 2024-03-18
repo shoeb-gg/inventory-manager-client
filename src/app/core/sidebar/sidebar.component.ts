@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
                 items: [
                     {
                         label: 'Dashboard',
-                        icon: 'pi pi-fw pi-globe',
+                        icon: 'pi pi-fw pi-chart-bar',
                         routerLink: ['/app/dashboard'],
                     },
                     {
@@ -59,6 +59,22 @@ export class SidebarComponent implements OnInit {
                         ],
                     },
                     {
+                        label: 'Operations',
+                        icon: 'pi pi-fw pi-hourglass',
+                        items: [
+                            {
+                                label: 'All Operations',
+                                icon: 'pi pi-fw pi-th-large',
+                                routerLink: ['/app/operations/all'],
+                            },
+                            {
+                                label: 'Operators',
+                                icon: 'pi pi-fw pi-users',
+                                routerLink: ['/app/operations/operators'],
+                            },
+                        ],
+                    },
+                    {
                         label: 'Utilities',
                         icon: 'pi pi-fw pi-wrench',
                         items: [
@@ -74,71 +90,6 @@ export class SidebarComponent implements OnInit {
                             },
                         ],
                     },
-                    // {
-                    //     label: 'Orders',
-                    //     icon: 'pi pi-fw pi-globe',
-                    //     routerLink: ['/app/orders'],
-                    // },
-
-                    // {
-                    //     label: 'Stock',
-                    //     icon: 'pi pi-fw pi-globe',
-                    //     routerLink: ['/app/stock'],
-                    // },
-
-                    // {
-                    //     label: 'Supplier',
-                    //     icon: 'pi pi-fw pi-user',
-                    //     items: [
-                    //         {
-                    //             label: 'All Suppliers',
-                    //             icon: 'pi pi-fw pi-sign-in',
-                    //             routerLink: ['/auth/login'],
-                    //         },
-                    //         {
-                    //             label: 'New Supplier',
-                    //             icon: 'pi pi-fw pi-times-circle',
-                    //             routerLink: ['/auth/error'],
-                    //         },
-                    //         {
-                    //             label: 'Supplier Categories',
-                    //             icon: 'pi pi-fw pi-lock',
-                    //             routerLink: ['/auth/access'],
-                    //         },
-                    //     ],
-                    // },
-                    // {
-                    //     label: 'Purchase',
-                    //     icon: 'pi pi-fw pi-user',
-                    //     items: [
-                    //         {
-                    //             label: 'All Purchases',
-                    //             icon: 'pi pi-fw pi-sign-in',
-                    //             routerLink: ['/auth/login'],
-                    //         },
-                    //         {
-                    //             label: 'New Purchase',
-                    //             icon: 'pi pi-fw pi-times-circle',
-                    //             routerLink: ['/auth/error'],
-                    //         },
-                    //     ],
-                    // },
-                    // {
-                    //     label: 'Operations',
-                    //     icon: 'pi pi-fw pi-user',
-                    //     items: [
-                    //         {
-                    //             label: 'All Operations',
-                    //             icon: 'pi pi-fw pi-sign-in',
-                    //             routerLink: ['/auth/login'],
-                    //         },
-                    //         {
-                    //             label: 'New Operation',
-                    //             icon: 'pi pi-fw pi-times-circle',
-                    //             routerLink: ['/auth/error'],
-                    //         },
-                    //     ],
-                    // },
                 ],
             },
         ];

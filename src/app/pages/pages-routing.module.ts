@@ -60,6 +60,13 @@ const routes: Routes = [
                         (m) => m.UtilitiesModule
                     ),
             },
+            {
+                path: 'operations',
+                loadChildren: () =>
+                    import('./operations/operations.module').then(
+                        (m) => m.OperationsModule
+                    ),
+            },
         ],
     },
 ];
