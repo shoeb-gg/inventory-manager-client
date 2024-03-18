@@ -95,10 +95,10 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
         }
 
         let newPurchase = {
-            ...this.purchaseForm.value,
-            product: this.purchaseForm.value.product.id,
-            seller: this.purchaseForm.value.seller
-                ? this.purchaseForm.value.seller.id
+            ...this.purchaseForm.getRawValue(),
+            product: this.purchaseForm.getRawValue().product.id,
+            seller: this.purchaseForm.getRawValue().seller
+                ? this.purchaseForm.getRawValue().seller.id
                 : null,
         };
 
