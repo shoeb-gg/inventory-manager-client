@@ -1,0 +1,19 @@
+::ng-deep {
+    .add-category-btn {
+        .p-button {
+            width: 6rem; //your font size here
+        }
+    }
+
+    .p-tabview-nav {
+        @apply flex justify-center w-full;
+    }
+
+    .p-tabview-nav li {
+        @apply w-1/2;
+    }
+
+    .p-tabview-nav-link {
+        @apply flex justify-center;
+    }
+}
