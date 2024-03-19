@@ -21,8 +21,8 @@
                     <th pSortableColumn="name" style="width: 20%">Name <p-sortIcon field="name"></p-sortIcon></th>
                     <th pSortableColumn="category" style="width: 20%">Category <p-sortIcon field="category"></p-sortIcon></th>
                     <th pSortableColumn="subcategory" style="width: 20%">Subcategory <p-sortIcon field="subcategory"></p-sortIcon></th>
-                    <th pSortableColumn="price" style="width: 15%">Price <p-sortIcon field="price"></p-sortIcon></th>
-                    <th pSortableColumn="quantityType" style="width: 25%">Quantity Type <p-sortIcon field="quantityType"></p-sortIcon></th>
+                    <th pSortableColumn="price_amount" style="width: 15%">Price <p-sortIcon field="price"></p-sortIcon></th>
+                    <th pSortableColumn="quantity_type" style="width: 25%">Quantity Type <p-sortIcon field="quantityType"></p-sortIcon></th>
                 </tr>
             </ng-template>
 
@@ -31,7 +31,9 @@
                     <td>{{ product.name }}</td>
                     <td>{{ product.category }}</td>
                     <td>{{ product.subcategory }}</td>
-                    <td>{{ product.price_amount }} {{ product.price_unit }}</td>
+                    <td>
+                        <span *ngIf="product.price_amount">{{ product.price_amount }} {{ product.price_unit }} </span>
+                    </td>
                     <td>{{ product.quantity_type }}</td>
                 </tr>
             </ng-template>
