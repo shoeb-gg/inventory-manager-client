@@ -8,7 +8,7 @@ import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 
 import { ProductsService } from 'src/app/services/products.service';
 
-import { PurchaseDetailsComponent } from 'src/app/shared/dialog/purchase-details/purchase-details.component';
+import { OperationDetailsComponent } from 'src/app/shared/dialog/operation-details/operation-details.component';
 
 @Component({
     selector: 'app-all-operations',
@@ -32,10 +32,11 @@ export class AllOperationsComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.loading = true;
         // this.loadPurchases();
+        this.openNewOperationDialog();
     }
 
     openNewOperationDialog() {
-        this.ref = this.dialogService.open(PurchaseDetailsComponent, {
+        this.ref = this.dialogService.open(OperationDetailsComponent, {
             header: 'Start a New Operation',
             width: '80%',
             contentStyle: { overflow: 'auto' },
