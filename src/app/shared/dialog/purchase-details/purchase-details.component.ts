@@ -68,11 +68,12 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
 
         if (this.config.data.purchase) {
             this.purchaseForm.patchValue(this.config.data.purchase);
+            this.loading = false;
         } else if (this.config.data.product) {
             this.prepareFromInventory(this.config.data.product.id);
+        } else {
+            this.loading = false;
         }
-
-        this.loading = false;
     }
 
     prepareFromInventory(productId) {
@@ -82,6 +83,7 @@ export class PurchaseDetailsComponent implements OnInit, OnDestroy {
             }),
         });
         this.purchaseForm.controls['product'].disable();
+        this.loading = false;
     }
 
     createPurchase() {

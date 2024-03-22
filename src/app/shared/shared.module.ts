@@ -10,6 +10,7 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AccordionModule } from 'primeng/accordion';
 
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { ProductDetailsComponent } from './dialog/product-details/product-details.component';
@@ -19,6 +20,7 @@ import { PriceDetailsComponent } from './dialog/price-details/price-details.comp
 import { CategoryDetailsComponent } from './dialog/category-details/category-details.component';
 import { SellerDetailsComponent } from './dialog/seller-details/seller-details.component';
 import { PurchaseDetailsComponent } from './dialog/purchase-details/purchase-details.component';
+import { OperationDetailsComponent } from './dialog/operation-details/operation-details.component';
 
 @NgModule({
     declarations: [
@@ -30,6 +32,7 @@ import { PurchaseDetailsComponent } from './dialog/purchase-details/purchase-det
         CategoryDetailsComponent,
         SellerDetailsComponent,
         PurchaseDetailsComponent,
+        OperationDetailsComponent,
     ],
     imports: [
         CommonModule,
@@ -43,6 +46,7 @@ import { PurchaseDetailsComponent } from './dialog/purchase-details/purchase-det
         ReactiveFormsModule,
         ConfirmDialogModule,
         ProgressSpinnerModule,
+        AccordionModule,
     ],
     exports: [AppMenuitemComponent],
 })

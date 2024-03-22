@@ -1,0 +1,40 @@
+::ng-deep {
+    .Sending {
+        .p-accordion-tab {
+            background-color: #ff0000;
+            padding: 0.2rem;
+            margin-bottom: 15px !important;
+            border-radius: 10px;
+
+            a {
+                @apply text-xl;
+            }
+        }
+    }
+
+    .Receiving {
+        .p-accordion-tab {
+            background-color: #0ac074;
+            padding: 0.2rem;
+            margin-bottom: 15px !important;
+            border-radius: 10px;
+
+            a {
+                @apply text-xl;
+            }
+        }
+    }
+
+    .Pending {
+        .p-accordion-tab {
+            background-color: #ffb821;
+            padding: 0.2rem;
+            margin-bottom: 15px !important;
+            border-radius: 10px;
+
+            a {
+                @apply text-xl;
+            }
+        }
+    }
+}
