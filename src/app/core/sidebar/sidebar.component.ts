@@ -72,6 +72,11 @@ export class SidebarComponent implements OnInit {
                                 icon: 'pi pi-fw pi-users',
                                 routerLink: ['/app/operations/operators'],
                             },
+                            {
+                                label: 'Operation Categories',
+                                icon: 'pi pi-fw pi-sitemap',
+                                routerLink: ['/app/operations/categories'],
+                            },
                         ],
                     },
                     {
