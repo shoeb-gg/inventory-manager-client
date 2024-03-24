@@ -21,6 +21,7 @@ import { CategoryDetailsComponent } from './dialog/category-details/category-det
 import { SellerDetailsComponent } from './dialog/seller-details/seller-details.component';
 import { PurchaseDetailsComponent } from './dialog/purchase-details/purchase-details.component';
 import { OperationDetailsComponent } from './dialog/operation-details/operation-details.component';
+import { OperationCategorieDetailsComponent } from './dialog/operation-categorie-details/operation-categorie-details.component';
 
 @NgModule({
     declarations: [
@@ -33,6 +34,7 @@ import { OperationDetailsComponent } from './dialog/operation-details/operation-
         SellerDetailsComponent,
         PurchaseDetailsComponent,
         OperationDetailsComponent,
+        OperationCategorieDetailsComponent,
     ],
     imports: [
         CommonModule,

@@ -60,4 +60,21 @@ export class PurchasesService {
             purchaseInfo
         );
     }
+
+    getAllOperationCategories() {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.get(
+            this.apiUrl + 'operations-category/all/' + businessId
+        );
+    }
+
+    createOperationCategories(operationCategoriesInfo) {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.post<ResponseModel>(
+            this.apiUrl + 'operations-category/' + businessId,
+            operationCategoriesInfo
+        );
+    }
 }

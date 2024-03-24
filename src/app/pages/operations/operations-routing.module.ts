@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { OperationsComponent } from './operations.component';
 import { AllOperationsComponent } from './all-operations/all-operations.component';
 import { OperatorsComponent } from './operators/operators.component';
+import { OperationCategoriesComponent } from './operation-categories/operation-categories.component';
 
 const routes: Routes = [
     {
@@ -22,6 +23,10 @@ const routes: Routes = [
             {
                 path: 'operators',
                 component: OperatorsComponent,
+            },
+            {
+                path: 'categories',
+                component: OperationCategoriesComponent,
             },
         ],
     },
