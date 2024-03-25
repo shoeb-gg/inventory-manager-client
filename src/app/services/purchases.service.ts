@@ -77,4 +77,19 @@ export class PurchasesService {
             operationCategoriesInfo
         );
     }
+
+    getAllOperators() {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.get(this.apiUrl + 'operators/all/' + businessId);
+    }
+
+    createOperator(operatorInfo) {
+        let businessId = localStorage.getItem('selectedBusinessId');
+
+        return this.http.post<ResponseModel>(
+            this.apiUrl + 'operators/' + businessId,
+            operatorInfo
+        );
+    }
 }
