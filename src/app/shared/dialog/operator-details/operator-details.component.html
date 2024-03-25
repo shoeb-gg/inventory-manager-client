@@ -1,0 +1,50 @@
+<section class="w-full py-2 space-y-5" [formGroup]="OperatorForm">
+    <div class="w-full">
+        <label for="name" class="font-bold block mb-2 ml-1"> Name(*) </label>
+        <input pInputText id="name" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Operator Name'" formControlName="name" />
+    </div>
+
+    <div class="w-full">
+        <label for="phone" class="font-bold block mb-2 ml-1"> Phone(*) </label>
+        <input
+            pInputText
+            id="phone"
+            pKeyFilter="alphanum"
+            type="number"
+            class="w-full"
+            [placeholder]="'Enter the Operator Phone Number'"
+            formControlName="phone"
+        />
+    </div>
+
+    <div class="w-full">
+        <label for="address" class="font-bold block mb-2 ml-1"> Address(*) </label>
+        <input
+            pInputText
+            id="address"
+            pKeyFilter="alphanum"
+            class="w-full"
+            [placeholder]="'Enter the Operator Address'"
+            formControlName="address"
+        />
+    </div>
+
+    <div class="w-full">
+        <label for="description" class="font-bold block mb-2 ml-1"> Description </label>
+        <textarea
+            [placeholder]="'Enter the Operator Description'"
+            class="w-full"
+            id="description"
+            rows="5"
+            cols="30"
+            pInputTextarea
+            formControlName="description"
+        ></textarea>
+    </div>
+
+    <div class="w-full flex justify-end">
+        <p-button (onClick)="createOperator()" label="Create" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+
+        <p-button *ngIf="config.data" label="Update" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+    </div>
+</section>
