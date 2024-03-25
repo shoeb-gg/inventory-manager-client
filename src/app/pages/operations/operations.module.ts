@@ -9,6 +9,7 @@ import { OperatorsComponent } from './operators/operators.component';
 import { ButtonModule } from 'primeng/button';
 import { TabViewModule } from 'primeng/tabview';
 import { TableModule } from 'primeng/table';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 import { OperationCategoriesComponent } from './operation-categories/operation-categories.component';
 
@@ -25,6 +26,7 @@ import { OperationCategoriesComponent } from './operation-categories/operation-c
         ButtonModule,
         TabViewModule,
         TableModule,
+        ProgressSpinnerModule,
     ],
 })
 export class OperationsModule {}
