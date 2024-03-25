@@ -24,11 +24,12 @@ export class OperationCategoriesComponent implements OnInit, OnDestroy {
     ) {}
 
     public operationCategories = [];
+    public loading = false;
     public ref: DynamicDialogRef;
 
     ngOnInit(): void {
+        this.loading = true;
         this.loadOperationCategories();
-        this.openNewOperationCategoriesDialog();
     }
 
     loadOperationCategories() {
@@ -37,6 +38,7 @@ export class OperationCategoriesComponent implements OnInit, OnDestroy {
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: any) => {
                 this.operationCategories = r;
+                this.loading = false;
             });
     }
 
