@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 
 import { ToastService } from 'src/app/services/toast.service';
-import { PurchasesService } from 'src/app/services/purchases.service';
+import { OperationsService } from 'src/app/services/operations.service';
 
 import { ResponseModel } from 'src/app/common/models/Response_Model';
 
@@ -25,7 +25,7 @@ export class OperatorDetailsComponent implements OnInit, OnDestroy {
         private readonly toast: ToastService,
         public config: DynamicDialogConfig,
         private readonly ref: DynamicDialogRef,
-        private readonly purchases: PurchasesService
+        private readonly operations: OperationsService
     ) {}
 
     OperatorForm: FormGroup;
@@ -48,7 +48,7 @@ export class OperatorDetailsComponent implements OnInit, OnDestroy {
             return;
         }
 
-        this.purchases
+        this.operations
             .createOperator(this.OperatorForm.value)
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: ResponseModel) => {

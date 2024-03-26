@@ -37,4 +37,15 @@
             }
         }
     }
+
+    .p-dropdown {
+        @apply w-full;
+    }
+
+    .p-calendar {
+        @apply w-full;
+    }
+    .p-dialog {
+        max-height: 95% !important;
+    }
 }

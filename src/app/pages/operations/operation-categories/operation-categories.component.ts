@@ -5,7 +5,7 @@ import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { Subject } from 'rxjs/internal/Subject';
 import { takeUntil } from 'rxjs/internal/operators/takeUntil';
 
-import { PurchasesService } from 'src/app/services/purchases.service';
+import { OperationsService } from 'src/app/services/operations.service';
 
 import { OperationCategorieDetailsComponent } from 'src/app/shared/dialog/operation-categorie-details/operation-categorie-details.component';
 
@@ -20,7 +20,7 @@ export class OperationCategoriesComponent implements OnInit, OnDestroy {
 
     constructor(
         private readonly dialogService: DialogService,
-        private readonly purchases: PurchasesService
+        private readonly operations: OperationsService
     ) {}
 
     public operationCategories = [];
@@ -33,7 +33,7 @@ export class OperationCategoriesComponent implements OnInit, OnDestroy {
     }
 
     loadOperationCategories() {
-        this.purchases
+        this.operations
             .getAllOperationCategories()
             .pipe(takeUntil(this._unsubscribeAll))
             .subscribe((r: any) => {
