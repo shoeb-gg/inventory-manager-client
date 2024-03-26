@@ -11,6 +11,7 @@ import { ButtonModule } from 'primeng/button';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AccordionModule } from 'primeng/accordion';
+import { CalendarModule } from 'primeng/calendar';
 
 import { AppMenuitemComponent } from './app.menuitem.component';
 import { ProductDetailsComponent } from './dialog/product-details/product-details.component';
@@ -51,6 +52,7 @@ import { OperatorDetailsComponent } from './dialog/operator-details/operator-det
         ConfirmDialogModule,
         ProgressSpinnerModule,
         AccordionModule,
+        CalendarModule,
     ],
     exports: [AppMenuitemComponent],
 })

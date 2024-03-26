@@ -8,11 +8,20 @@
         <p-tabView>
             <p-tabPanel>
                 <ng-template pTemplate="header">
+                    <i class="pi pi-clock text-lg pt-1"></i>
+                    <span class="pl-2 text-lg">In-Progress Operations</span>
+                </ng-template>
+
+                Complex Content to Lazy Load 0
+            </p-tabPanel>
+
+            <p-tabPanel>
+                <ng-template pTemplate="header">
                     <i class="pi pi-sync text-lg pt-1"></i>
                     <span class="pl-2 text-lg">Ongoing Operations</span>
                 </ng-template>
 
-                Complex Content to Lazy Load 1
+                <ng-template pTemplate="content"> Complex Content to Lazy Load 1</ng-template>
             </p-tabPanel>
 
             <p-tabPanel>
@@ -21,7 +30,7 @@
                     <span class="pl-2 text-lg">Completed Operations</span>
                 </ng-template>
 
-                <ng-template pTemplate="content"> Complex Content to Lazy Load </ng-template>
+                <ng-template pTemplate="content"> Complex Content to Lazy Load 2</ng-template>
             </p-tabPanel>
         </p-tabView>
     </div>

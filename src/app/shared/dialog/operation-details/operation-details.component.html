@@ -1,59 +1,290 @@
 <section class="w-full py-2 space-y-5" [formGroup]="operationForm">
     <div class="w-full">
         <label for="name" class="font-bold block mb-2 ml-1"> Operation Name(*) </label>
-        <input pInputText id="name" pKeyFilter="alphanum" class="w-full" [placeholder]="'Enter the Category Name'" formControlName="name" />
+        <input
+            pInputText
+            id="name"
+            pKeyFilter="alphanum"
+            class="w-full"
+            [placeholder]="'Enter the Operation Name'"
+            formControlName="name"
+        />
     </div>
 
-    <div class="w-full flex justify-between space-x-2 pb-3">
+    <div class="w-full flex items-center justify-between space-x-2 pb-3">
         <div class="w-1/2">
-            <label for="name" class="font-bold block mb-2 ml-1"> Operation Name(*) </label>
-            <input
-                pInputText
-                id="name"
-                pKeyFilter="alphanum"
-                class="w-full"
-                [placeholder]="'Enter the Category Name'"
-                formControlName="name"
-            />
+            <label for="operation_category" class="font-bold block mb-2 ml-1"> Operation Category(*) </label>
+            <p-dropdown
+                id="operation_category"
+                [options]="operation_categories"
+                optionLabel="name"
+                formControlName="operation_category"
+                [autoDisplayFirst]="false"
+                [placeholder]="'Select a Operation Category'"
+            ></p-dropdown>
         </div>
 
         <div class="w-1/2">
-            <label for="name" class="font-bold block mb-2 ml-1"> Category Name(*) </label>
-            <input
-                pInputText
-                id="name"
-                pKeyFilter="alphanum"
-                class="w-full"
-                [placeholder]="'Enter the Category Name'"
-                formControlName="name"
-            />
+            <label for="operator" class="font-bold block mb-2 ml-1"> Operator(*) </label>
+            <p-dropdown
+                id="operator"
+                [options]="operators"
+                optionLabel="name"
+                formControlName="operator"
+                [autoDisplayFirst]="false"
+                [placeholder]="'Select an Operator'"
+            ></p-dropdown>
         </div>
     </div>
 
-    <p-accordion [multiple]="true" [activeIndex]="[0]">
+    <p-accordion [multiple]="true" [activeIndex]="[]">
         <p-accordionTab class="Sending" header="Sending">
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </p>
+            <div class="font-bold space-x-5 w-full flex justify-end items-center">
+                <p-button
+                    (onClick)="$event.stopPropagation(); decreaseSendField()"
+                    icon="pi pi-minus"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+                <p-button
+                    (onClick)="$event.stopPropagation(); increaseSendField()"
+                    icon="pi pi-plus"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+            </div>
+
+            <div formArrayName="send_operation" class="space-y-4">
+                <ng-container *ngFor="let data of sendArray?.controls; let i = index" [formGroupName]="i">
+                    <div class="w-full space-x-2 flex justify-between items-center">
+                        <div class="w-1/4">
+                            <label for="{{ i }}product" class="font-bold block mb-2 ml-1"> Product(*) </label>
+                            <p-dropdown
+                                id="{{ i }}product"
+                                [options]="products"
+                                optionLabel="name"
+                                formControlName="product"
+                                [autoDisplayFirst]="false"
+                                [placeholder]="'Select a Product'"
+                                class="w-full"
+                                [filter]="true"
+                                filterBy="name"
+                                [virtualScroll]="true"
+                                [virtualScrollItemSize]="20"
+                            ></p-dropdown>
+                        </div>
+
+                        <div class="w-1/4">
+                            <label for="{{ i }}quantity" class="font-bold block mb-2 ml-1"> Quantity(*) </label>
+                            <input
+                                pInputText
+                                id="{{ i }}quantity"
+                                type="number"
+                                class="w-full"
+                                [placeholder]="'Enter the Quantity'"
+                                formControlName="quantity"
+                            />
+                        </div>
+
+                        <div class="w-1/4">
+                            <label class="font-bold block mb-2 ml-1"> Date(*) </label>
+                            <p-calendar
+                                appendTo="body"
+                                formControlName="date"
+                                [showIcon]="true"
+                                dataType="string"
+                                class="w-full"
+                            ></p-calendar>
+                        </div>
+
+                        <div class="w-1/4">
+                            <label for="{{ i }}cost" class="font-bold block mb-2 ml-1"> Cost </label>
+                            <input
+                                pInputText
+                                id="{{ i }}cost"
+                                type="number"
+                                class="w-full"
+                                [placeholder]="'Enter the Cost'"
+                                formControlName="cost"
+                            />
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
         </p-accordionTab>
+
         <p-accordionTab class="Receiving" header="Receiving">
-            <p>
-                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
-                Consectetur, adipisci velit, sed quia non numquam eius modi.
-            </p>
+            <div class="font-bold space-x-5 w-full flex justify-end items-center">
+                <p-button
+                    (onClick)="$event.stopPropagation(); decreaseReceiveField()"
+                    icon="pi pi-minus"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+                <p-button
+                    (onClick)="$event.stopPropagation(); increaseReceiveField()"
+                    icon="pi pi-plus"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+            </div>
+
+            <div formArrayName="receive_operation" class="space-y-4">
+                <ng-container *ngFor="let data of receiveArray?.controls; let i = index" [formGroupName]="i">
+                    <div class="w-full space-x-2 flex justify-between items-center">
+                        <div class="w-1/4">
+                            <label for="{{ i }}product" class="font-bold block mb-2 ml-1"> Product(*) </label>
+                            <p-dropdown
+                                id="{{ i }}product"
+                                [options]="products"
+                                optionLabel="name"
+                                formControlName="product"
+                                [autoDisplayFirst]="false"
+                                [placeholder]="'Select a Product'"
+                                class="w-full"
+                                [filter]="true"
+                                filterBy="name"
+                                [virtualScroll]="true"
+                                [virtualScrollItemSize]="20"
+                            ></p-dropdown>
+                        </div>
+
+                        <div class="w-1/4">
+                            <label for="{{ i }}quantity" class="font-bold block mb-2 ml-1"> Quantity(*) </label>
+                            <input
+                                pInputText
+                                id="{{ i }}quantity"
+                                type="number"
+                                class="w-full"
+                                [placeholder]="'Enter the Quantity'"
+                                formControlName="quantity"
+                            />
+                        </div>
+
+                        <div class="w-1/4">
+                            <label class="font-bold block mb-2 ml-1"> Date(*) </label>
+                            <p-calendar
+                                appendTo="body"
+                                formControlName="date"
+                                [showIcon]="true"
+                                dataType="string"
+                                class="w-full"
+                            ></p-calendar>
+                        </div>
+
+                        <div class="w-1/4">
+                            <label for="{{ i }}cost" class="font-bold block mb-2 ml-1"> Cost </label>
+                            <input
+                                pInputText
+                                id="{{ i }}cost"
+                                type="number"
+                                class="w-full"
+                                [placeholder]="'Enter the Cost'"
+                                formControlName="cost"
+                            />
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
         </p-accordionTab>
+
         <p-accordionTab class="Pending" header="Pending">
-            <p>
-                At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti
-                quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia
-                deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam
-                libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.
-            </p>
+            <div class="font-bold space-x-5 w-full flex justify-end items-center">
+                <p-button
+                    (onClick)="$event.stopPropagation(); decreasePendingField()"
+                    icon="pi pi-minus"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+                <p-button
+                    (onClick)="$event.stopPropagation(); increasePendingField()"
+                    icon="pi pi-plus"
+                    [raised]="true"
+                    [rounded]="true"
+                ></p-button>
+            </div>
+
+            <div formArrayName="pending_operation" class="space-y-4">
+                <ng-container *ngFor="let data of pendingArray?.controls; let i = index" [formGroupName]="i">
+                    <div class="w-full space-x-2 flex justify-between items-center">
+                        <div class="w-1/4">
+                            <label for="{{ i }}product" class="font-bold block mb-2 ml-1"> Product </label>
+                            <p-dropdown
+                                id="{{ i }}product"
+                                [options]="products"
+                                optionLabel="name"
+                                formControlName="product"
+                                [autoDisplayFirst]="false"
+                                [placeholder]="'Select a Product'"
+                                class="w-full"
+                                [filter]="true"
+                                filterBy="name"
+                                [virtualScroll]="true"
+                                [virtualScrollItemSize]="20"
+                            ></p-dropdown>
+                        </div>
+
+                        <div class="w-1/4">
+                            <label for="{{ i }}quantity" class="font-bold block mb-2 ml-1"> Quantity </label>
+                            <input
+                                pInputText
+                                id="{{ i }}quantity"
+                                type="number"
+                                class="w-full"
+                                [placeholder]="'Enter the Quantity'"
+                                formControlName="quantity"
+                            />
+                        </div>
+
+                        <div class="w-1/4">
+                            <label class="font-bold block mb-2 ml-1"> Date </label>
+                            <p-calendar
+                                appendTo="body"
+                                formControlName="date"
+                                [showIcon]="true"
+                                dataType="string"
+                                class="w-full"
+                            ></p-calendar>
+                        </div>
+
+                        <div class="w-1/4">
+                            <label for="{{ i }}cost" class="font-bold block mb-2 ml-1"> Cost </label>
+                            <input
+                                pInputText
+                                id="{{ i }}cost"
+                                type="number"
+                                class="w-full"
+                                [placeholder]="'Enter the Cost'"
+                                formControlName="cost"
+                            />
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
         </p-accordionTab>
     </p-accordion>
+
+    <div class="w-1/3">
+        <label for="status" class="font-bold block mb-2 ml-1"> Status(*) </label>
+        <p-dropdown
+            id="status"
+            [options]="['In Progress', 'Ongoing', 'Finished']"
+            formControlName="status"
+            [autoDisplayFirst]="true"
+            [placeholder]="'Select an Status'"
+        ></p-dropdown>
+    </div>
+
+    <div class="w-full flex justify-end">
+        <p-button
+            (onClick)="createOperation()"
+            *ngIf="!config.data"
+            label="Create"
+            icon="pi pi-check"
+            [raised]="true"
+            [rounded]="true"
+        ></p-button>
+
+        <p-button *ngIf="config.data" label="Update" icon="pi pi-check" [raised]="true" [rounded]="true"></p-button>
+    </div>
 </section>
