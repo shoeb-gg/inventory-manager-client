@@ -29,7 +29,6 @@ export class OperatorsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.loadOperators();
-        this.openNewOperatorDialog();
     }
 
     loadOperators() {
