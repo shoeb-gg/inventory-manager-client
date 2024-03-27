@@ -4,4 +4,10 @@
             width: 6rem; //your font size here
         }
     }
+
+    .p-calendar {
+        input {
+            cursor: pointer !important;
+        }
+    }
 }
