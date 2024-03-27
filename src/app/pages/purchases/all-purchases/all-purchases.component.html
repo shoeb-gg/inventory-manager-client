@@ -1,10 +1,27 @@
 <section class="w-full px-2">
-    <div class="w-full flex justify-end">
-        <!-- <div class="text-2xl font-semibold">All Cateogries</div> -->
+    <div class="w-full flex justify-end space-x-2 relative">
+        <div><p-button (onClick)="allPurchases = originalAllPurchases" class="add-category-btn" icon="pi pi-refresh"></p-button></div>
+
+        <div class="w-[6rem] cursor-pointer">
+            <p-button class="add-category-btn absolute cursor-pointer" icon="pi pi-calendar"> </p-button>
+            <p-calendar
+                #calendar
+                [(ngModel)]="selectedDate"
+                [readonlyInput]="true"
+                [hideOnDateTimeSelect]="true"
+                appendTo="body"
+                selectionMode="range"
+                dataType="string"
+                (onSelect)="selectDateRange()"
+                class="opacity-0 absolute cursor-pointer"
+            >
+            </p-calendar>
+        </div>
+
         <div><p-button (onClick)="openNewPurchasesDialog()" class="add-category-btn" icon="pi pi-plus"></p-button></div>
     </div>
 
-    <div class="card mt-5">
+    <div class="card mt-3">
         <p-table
             *ngIf="!loading"
             [value]="allPurchases"
@@ -19,8 +36,9 @@
             <ng-template pTemplate="header">
                 <tr>
                     <th pSortableColumn="name" style="width: 30%">Product <p-sortIcon field="product"></p-sortIcon></th>
-                    <th pSortableColumn="name" style="width: 40%">Supplier <p-sortIcon field="seller"></p-sortIcon></th>
-                    <th pSortableColumn="name" style="width: 40%">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
+                    <th pSortableColumn="seller" style="width: 25%">Supplier <p-sortIcon field="seller"></p-sortIcon></th>
+                    <th pSortableColumn="created_at" style="width: 20%">Date <p-sortIcon field="created_at"></p-sortIcon></th>
+                    <th pSortableColumn="quantity" style="width: 30%">Quantity <p-sortIcon field="quantity"></p-sortIcon></th>
                 </tr>
             </ng-template>
 
@@ -28,6 +46,7 @@
                 <tr class="cursor-pointer" (click)="openEditPurchaseDialog(purchase)">
                     <td>{{ purchase.product.name }}</td>
                     <td>{{ purchase.seller?.name }}</td>
+                    <td>{{ purchase.date }}</td>
                     <td>{{ purchase.quantity }}</td>
                 </tr>
             </ng-template>

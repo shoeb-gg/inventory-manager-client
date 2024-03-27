@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 
@@ -26,12 +26,19 @@ export class AllPurchasesComponent implements OnInit, OnDestroy {
         private readonly product: ProductsService
     ) {}
 
+    @ViewChild('calendar') private calendar: any;
+
     public allPurchases: any[] = [];
+    public originalAllPurchases: any[] = [];
     public ref: DynamicDialogRef;
     public loading: boolean = false;
 
+    public selectedDate;
+
     public products: any[];
     public sellers: any[];
+
+    public options: any = { year: 'numeric', month: 'long', day: 'numeric' };
 
     ngOnInit(): void {
         this.loading = true;
@@ -81,14 +88,18 @@ export class AllPurchasesComponent implements OnInit, OnDestroy {
                 return x.seller === sel.id;
             });
 
+            let date = new Date(x.created_at);
+
             newPurchaseArr.push({
                 ...x,
                 product: product,
                 seller: seller,
+                date: date.toLocaleDateString('en-GB', this.options),
             });
-
-            this.allPurchases = newPurchaseArr;
         });
+
+        this.allPurchases = newPurchaseArr;
+        this.originalAllPurchases = newPurchaseArr;
 
         this.loading = false;
     }
@@ -134,6 +145,30 @@ export class AllPurchasesComponent implements OnInit, OnDestroy {
             .subscribe((r) => {
                 if (r) this.loadPurchases();
             });
+    }
+
+    selectDateRange() {
+        if (this.selectedDate[1]) {
+            this.loading = true;
+
+            this.calendar.overlayVisible = false;
+
+            this.filterByDateRange(
+                new Date(this.selectedDate[0]),
+                new Date(this.selectedDate[1])
+            );
+        }
+    }
+
+    filterByDateRange(startDate, endDate) {
+        let newPurchaseArr = this.allPurchases.filter((obj) => {
+            const objDate = new Date(obj.created_at);
+            return objDate >= startDate && objDate <= endDate;
+        });
+
+        this.allPurchases = newPurchaseArr;
+
+        this.loading = false;
     }
 
     ngOnDestroy(): void {
