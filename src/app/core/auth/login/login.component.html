@@ -38,14 +38,17 @@
                     >
                     </p-password>
 
-                    <div class="flex align-items-center justify-content-between mb-5 gap-5">
+                    <div class="flex flex-col mb-5 mt-5 gap-1">
                         <!-- <div class="flex align-items-center">
                             <p-checkbox id="rememberme1" [binary]="true" styleClass="mr-2"></p-checkbox>
                             <label for="rememberme1">Remember me</label>
+                        </div> -->
+                        <div class="font-bold text-xl no-underline ml-2 text-center" style="color: var(--primary-color)">
+                            Default Credentials:
                         </div>
-                        <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">
-                            Forgot password?
-                        </a> -->
+                        <div class="font-medium no-underline ml-2 text-center" style="color: var(--primary-color)">
+                            Username: <strong>shoebgg</strong> | Password: <strong>welcomeBoss</strong>
+                        </div>
                     </div>
 
                     <button (click)="login()" pButton pRipple label="Sign In" class="w-full p-3 text-xl"></button>
